@@ -1,0 +1,3 @@
+[submodule "styles/lib/bootstrap-philagov"]
+	path = styles/lib/bootstrap-philagov
+	url = git://github.com/CityOfPhiladelphia/bootstrap-philagov.git
