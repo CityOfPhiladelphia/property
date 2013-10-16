@@ -1,0 +1,77 @@
+<div class="hero">
+    <h1>Property Search</h1>
+    <h3>You can use this application to search and compare property valuation data in the City of Philadelphia</h3>
+</div>
+<% if(data.noresults) { %>
+<div class="alert alert-error">No matches found for <code><%= _.compact(_.values(data.input)).join("</code> <code>") %></code>. <%= data.method !== "account" ? "For best results, try entering the account number of your property." : "" %> <a href="http://opa.phila.gov/opa.apps/Help/CitizenMain.aspx?sch=Ctrl2" target="_blank">Click here to submit an inquiry</a>.</div>
+<% } %>
+<div id="search-tabs" class="tabbable">
+    <ul class="nav nav-tabs">
+        <li class="active"><a href="#byAddress" data-toggle="tab">Address</a></li>
+        <li><a href="#byAccount" data-toggle="tab">Account</a></li>
+        <li><a href="#byBlock" data-toggle="tab">Block</a></li>
+        <li><a href="#byIntersection" data-toggle="tab">Intersection</a></li>
+    </ul>
+    <div class="tab-content row">
+        <div class="tab-pane active" id="byAddress">
+            <form data-method="address">
+                <div class="controls-row">
+                    <div class="control-group span4">
+                        <label for="address">Address</label>
+                        <input type="text" name="address" id="address" placeholder="ex. 1234 Market St" class="span4" autofocus>
+                    </div>
+                    <div class="control-group span2">
+                        <label for="unit">Unit</label>
+                        <input type="text" name="unit" id="unit" placeholder="ex. B" class="span2">
+                    </div>
+                </div>
+                <button class="btn btn-primary btn-large span6" type="submit"><i class="icon-search icon-white"></i> Search</button>
+            </form>
+        </div>
+        <div class="tab-pane" id="byAccount">
+            <form data-method="account">
+                <div class="controls-row">
+                    <div class="control-group span6">
+                        <label for="account">Account #</label>
+                        <input type="text" name="account" id="account" placeholder="ex. 883309000" class="span6">
+                    </div>
+                </div>
+                <button class="btn btn-primary btn-large span6" type="submit"><i class="icon-search icon-white"></i> Search</button>
+            </form>
+        </div>
+        <div class="tab-pane" id="byBlock">
+            <form data-method="block">
+                <div class="controls-row">
+                    <div class="control-group span2">
+                        <label for="hundred">Hundred</label>
+                        <input type="text" name="hundred" id="hundred" placeholder="ex. 1200" class="span2">
+                    </div>
+                    <div class="control-group span4">
+                        <label for="street">Street</label>
+                        <input type="text" name="street" id="street" placeholder="ex. Market St" class="span4">
+                    </div>
+                </div>
+                <button class="btn btn-primary btn-large span6" type="submit"><i class="icon-search icon-white"></i> Search</button>
+            </form>
+        </div>
+        <div class="tab-pane" id="byIntersection">
+            <form data-method="intersection">
+                <div class="controls-row">
+                    <div class="control-group span3">
+                        <label for="street1">Street 1</label>
+                        <input type="text" name="street1" id="street1" placeholder="ex. 12th St" class="span3">
+                    </div>
+                    <div class="control-group span3">
+                        <label for="street2">Street 2</label>
+                        <input type="text" name="street2" id="street2" placeholder="ex. Market St" class="span3">
+                    </div>
+                </div>
+                <button class="btn btn-primary btn-large span6" type="submit"><i class="icon-search icon-white"></i> Search</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<hr>
+
+<footer>By using this application you agree to its <a href="#disclaimer">Terms of Use</a>.</footer>

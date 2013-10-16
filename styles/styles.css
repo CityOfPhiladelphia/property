@@ -1,0 +1,108 @@
+body { margin-bottom: 20px; }
+
+/* Margin on container */
+#main { margin-bottom: 15px; }
+
+/* Home page similar to hero-unit */
+.hero h3 { font-size: 18px; font-weight: 200; line-height: 25px; color: inherit; }
+.hero h1 { margin-bottom: 0; font-size: 60px; line-height: 1; letter-spacing: -1px; color: inherit; }
+.home .btn-primary { margin-top: 10px; }
+
+/* Put ACCOUNT # and UNIT # in all caps */
+.property h1 small, .unit { text-transform: uppercase; }
+
+/* Emphasize market value like a bold .lead */
+.marketvalue { margin-bottom: 20px; font-size: 21px; line-height: 30px; font-weight: bold; }
+
+/* Value breakdown box */
+.value-breakdown legend { margin-bottom: 0; border-bottom: 1px #d3d3d3 solid;}
+.value-breakdown .nav-list { padding: 5px; }
+
+/* Tax estimate */
+#tax { font-size: 35px; font-weight: bold; margin: 5px; line-height: 1.5; }
+
+/* Disclaimer */
+.scrollable { height: 154px; overflow-y: scroll; border: 1px #D5D5D5 solid; padding: 0 5px; margin: 10px 0; }
+
+/* Hero h1 should get smaller on mobile */
+@media (max-width: 480px) {
+    .hero-unit h1, .hero h1 { font-size: 40px; }
+    .property h1 { font-size: 30px; }
+    .hidden-phone-vertical { display: none; }
+}
+
+/* Large button group */
+/*.large-group input, .large-group .add-on {
+    height: 35px;
+    font-size: 17.5px;
+    line-height: 2;
+}
+.large-group label.checkbox { width: 100%; height: 100%; }
+#homesteadAmount { width: 100px; }*/
+#rate { width: 60px; }
+
+.nav > li > a:hover { background-color: #fff; }
+.nav-tabs.nav-stacked > li > a { border: 1px #d3d3d3 solid; }
+
+/* Widget */
+.widget-content { padding-top: 10px; }
+.widget-content .nav-list, .widget-content label.nav-header { padding: 0; }
+
+/* Estimate Button */
+.beneath { display: none; }
+.above.hidden + .beneath { display: inline-block; }
+
+/* Tax slider */
+#rate, #slider { display: inline-block; }
+#slider { width: 90%; }
+#slider-container { width: 55%; }
+
+/* Properties list margin */
+.results { margin-bottom: 0px; }
+
+/* Tabs should be more narrow on phones to fit all 4 */
+@media (max-width: 370px) { .nav-tabs li a { padding-left: 6px; padding-right: 6px; } }
+
+/* Search form margins */
+[data-method] .control-group, [data-method] .control-group input { margin-bottom: 0; }
+
+/* Flip scroll */
+@media only screen and (max-width: 800px) {
+    
+	.flipper { overflow: hidden; overflow-x: scroll; }
+    .flipper table th:first-child, .flipper table td:first-child { position: absolute; border-right: 1px #ddd solid; }
+    .flipper table th:first-child { height: 100%; } /* TODO: Match width to the TDs below it */
+    .flipper table tr:nth-child(even) > td { background-color: #fff; }
+    .flipper table th:nth-child(2), .flipper table td:nth-child(2) { border-left: 55px transparent solid; }
+}
+
+/* Loading indicator from jQuery Mobile */
+.loading .loader { display: block; }
+.loader {
+    display: none;
+    z-index: 9999999;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	border:0;
+	background: none;
+	filter: Alpha(Opacity=18);
+	opacity: .18;
+	width: 46px;
+	height: 46px;
+	margin-left: -23px;
+	margin-top: -23px;
+}
+.loader .icon {
+	background-color: #000;
+	background: url(../images/ajax-loader.gif);
+	background-size: 46px 46px;
+	display: block;
+	margin: 0;
+	width: 44px;
+	height: 44px;
+	padding: 1px;
+	-webkit-border-radius: 36px;
+	-moz-border-radius: 36px;
+	border-radius: 36px;
+}
