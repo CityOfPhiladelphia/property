@@ -1,0 +1,28 @@
+{
+  "name": "opa",
+  "version": "0.0.0",
+  "description": "OPA Property Search",
+  "main": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/CityOfPhiladelphia/opa.git"
+  },
+  "keywords": [
+    "open",
+    "data"
+  ],
+  "author": "Tim Wisniewski",
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-requirejs": "~0.4.0",
+    "grunt-contrib-requirejs": "~0.4.1",
+    "grunt-contrib-cssmin": "~0.6.2",
+    "grunt-contrib-copy": "~0.4.1",
+    "grunt-contrib-clean": "~0.5.0",
+    "grunt-processhtml": "~0.2.2",
+    "grunt-contrib-htmlmin": "~0.1.3"
+  }
+}
