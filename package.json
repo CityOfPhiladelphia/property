@@ -14,7 +14,7 @@
     "open",
     "data"
   ],
-  "author": "Tim Wisniewski",
+  "author": "City of Philadelphia",
   "devDependencies": {
     "grunt": "~0.4.1",
     "grunt-requirejs": "~0.4.0",
