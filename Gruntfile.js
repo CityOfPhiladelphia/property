@@ -36,7 +36,7 @@ module.exports = function (grunt) {
       }
     },
     clean: {
-      build: ['build/'],
+      build: ['build/**/*', '!build/.git'],
       temp: ['temp/']
     },
     copy: {
