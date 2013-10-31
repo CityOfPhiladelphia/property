@@ -1,24 +1,24 @@
 <div class="hero">
     <h1>Property Search</h1>
-    <h3>You can use this application to search and compare property valuation data in the City of Philadelphia</h3>
+    <h3>You can use this application to search and compare property data in the City of Philadelphia</h3>
 </div>
 <% if(data.noresults) { %>
-<div class="alert alert-error">No matches found for <code><%= _.compact(_.values(data.input)).join("</code> <code>") %></code>. <%= data.method !== "account" ? "For best results, try entering the account number of your property." : "" %> <a href="http://opa.phila.gov/opa.apps/Help/CitizenMain.aspx?sch=Ctrl2" target="_blank">Click here to submit an inquiry</a>.</div>
+<div class="alert alert-error">No matches found for <code><%= _.compact(_.values(data.input)).join("</code> <code>") %></code>. <%= data.method !== "account" ? "For best results, try entering the account number of your property." : "" %> <a href="http://brtwebdev2:82/opa.apps/Help/CitizenMain.aspx?sch=Ctrl2">Click here to submit an inquiry</a>.</div>
 <% } %>
 <div id="search-tabs" class="tabbable">
     <ul class="nav nav-tabs">
-        <li class="active"><a href="#byAddress" data-toggle="tab">Address</a></li>
-        <li><a href="#byAccount" data-toggle="tab">Account</a></li>
-        <li><a href="#byBlock" data-toggle="tab">Block</a></li>
-        <li><a href="#byIntersection" data-toggle="tab">Intersection</a></li>
+        <li<% if(data.method === "address" || ! data.method) { %> class="active"<% } %>><a href="#byAddress" data-toggle="tab">Address</a></li>
+        <li<% if(data.method === "account") { %> class="active"<% } %>><a href="#byAccount" data-toggle="tab">Account</a></li>
+        <li<% if(data.method === "block") { %> class="active"<% } %>><a href="#byBlock" data-toggle="tab">Block</a></li>
+        <li<% if(data.method === "intersection") { %> class="active"<% } %>><a href="#byIntersection" data-toggle="tab">Intersection</a></li>
     </ul>
     <div class="tab-content row">
-        <div class="tab-pane active" id="byAddress">
+        <div class="tab-pane<% if(data.method === "address" || ! data.method) { %> active<% } %>" id="byAddress">
             <form data-method="address">
                 <div class="controls-row">
                     <div class="control-group span4">
                         <label for="address">Address</label>
-                        <input type="text" name="address" id="address" placeholder="ex. 1234 Market St" class="span4" autofocus>
+                        <input type="text" name="address" id="address" placeholder="ex. 1234 Market St" class="span4" autofocus value="<%= data.input.address %>">
                     </div>
                     <div class="control-group span2">
                         <label for="unit">Unit</label>
@@ -28,42 +28,42 @@
                 <button class="btn btn-primary btn-large span6" type="submit"><i class="icon-search icon-white"></i> Search</button>
             </form>
         </div>
-        <div class="tab-pane" id="byAccount">
+        <div class="tab-pane<% if(data.method === "account") { %> active<% } %>" id="byAccount">
             <form data-method="account">
                 <div class="controls-row">
                     <div class="control-group span6">
                         <label for="account">Account #</label>
-                        <input type="text" name="account" id="account" placeholder="ex. 883309000" class="span6">
+                        <input type="text" name="account" id="account" placeholder="ex. 883309000" class="span6" value="<%= data.input.account %>">
                     </div>
                 </div>
                 <button class="btn btn-primary btn-large span6" type="submit"><i class="icon-search icon-white"></i> Search</button>
             </form>
         </div>
-        <div class="tab-pane" id="byBlock">
+        <div class="tab-pane<% if(data.method === "block") { %> active<% } %>" id="byBlock">
             <form data-method="block">
                 <div class="controls-row">
                     <div class="control-group span2">
                         <label for="hundred">Hundred</label>
-                        <input type="text" name="hundred" id="hundred" placeholder="ex. 1200" class="span2">
+                        <input type="text" name="hundred" id="hundred" placeholder="ex. 1200" class="span2" value="<%= data.input.hundred %>">
                     </div>
                     <div class="control-group span4">
                         <label for="street">Street</label>
-                        <input type="text" name="street" id="street" placeholder="ex. Market St" class="span4">
+                        <input type="text" name="street" id="street" placeholder="ex. Market St" class="span4" value="<%= data.input.street %>">
                     </div>
                 </div>
                 <button class="btn btn-primary btn-large span6" type="submit"><i class="icon-search icon-white"></i> Search</button>
             </form>
         </div>
-        <div class="tab-pane" id="byIntersection">
+        <div class="tab-pane<% if(data.method === "intersection") { %> active<% } %>" id="byIntersection">
             <form data-method="intersection">
                 <div class="controls-row">
                     <div class="control-group span3">
                         <label for="street1">Street 1</label>
-                        <input type="text" name="street1" id="street1" placeholder="ex. 12th St" class="span3">
+                        <input type="text" name="street1" id="street1" placeholder="ex. 12th St" class="span3" value="<%= data.input.street1 %>">
                     </div>
                     <div class="control-group span3">
                         <label for="street2">Street 2</label>
-                        <input type="text" name="street2" id="street2" placeholder="ex. Market St" class="span3">
+                        <input type="text" name="street2" id="street2" placeholder="ex. Market St" class="span3" value="<%= data.input.street2 %>">
                     </div>
                 </div>
                 <button class="btn btn-primary btn-large span6" type="submit"><i class="icon-search icon-white"></i> Search</button>

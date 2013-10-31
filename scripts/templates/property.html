@@ -5,6 +5,12 @@
     <% } %>
     <small>Account # <%= data.property.account_number %></small>
 </h1>
+<div>
+    <ul class="nav nav-tabs">
+        <li class="active"><a href="#account/<%= data.property.account_number %>">Assessment</a></li>
+        <li><a href="#account/<%= data.property.account_number %>/loop">Tax Relief</a></li>
+    </ul>
+</div>
 <div class="row">
     <div class="span6">
         <div class="widget">
@@ -18,16 +24,17 @@
                         <ul class="nav nav-list">
                             <li class="nav-header">Owner<%= data.property.ownership.length > 1 ? "s" : "" %></li>
                             <li>
-                                <% _.each(data.property.ownership, function(owner) { %>
-                                    <%= owner.name %><br>
+                                <% _.each(data.property.ownership.owners, function(owner) { %>
+                                    <%= owner %><br>
                                 <% }); %>
                             </li>
                             <li class="nav-header">Mailing Address</li>
                             <li>
-                                <% var addresses = _.uniq(data.property.ownership, null, function(x) { return JSON.stringify({street: x.street, city: x.city, state: x.state, zip: x.zip}); }); %>
-                                <% _.each(addresses, function(owner) { %>
-                                    <address><%= [owner.street, [owner.city, owner.state].join(" "), owner.zip].join("<br>") %></address>
-                                <% }); %>
+                                <% if(data.property.ownership.liaison) { %>
+                                    <%= data.property.ownership.liaison %><br>
+                                <% } %>
+                                <% var addr = data.property.ownership.mailing_address %>
+                                <address><%= [addr.street, [addr.city, addr.state].join(" "), addr.zip].join("<br>") %></address>
                             </li>
                         </ul>
                     </div>
@@ -74,7 +81,10 @@
                             <li class="nav-header">Exterior Condition</li>
                             <li><%= data.property.characteristics.exterior_condition %></li>
                             <li class="nav-header">Zoning</li>
-                            <li><%= data.property.characteristics.zoning %></li>
+                            <li>
+                                <%= data.property.characteristics.zoning %>
+                                <%= data.property.characteristics.zoning_description %>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -82,15 +92,16 @@
         </div>
     </div>
 </div>
-<% if(data.property.proposed_valuation !== undefined &&  ! _.isEmpty(data.property.proposed_valuation)) { %>
+<% var proposed_available = data.property.proposed_valuation !== undefined &&  ! _.isEmpty(data.property.proposed_valuation); %>
 <div class="row">
     <div class="span12">
-        <div class="widget widget-table">
+        <div class="widget<% if(proposed_available) { %> widget-table<% } %>">
             <div class="widget-header">
                 <i class="icon-th-large"></i>
                 <h3>Proposed Valuation</h3>
             </div>
-            <div class="widget-content flipper">
+            <div class="widget-content<% if(proposed_available) { %> flipper<% } %>">
+                <% if(proposed_available) { %>
                 <table class="table table-striped table-bordered">
                     <thead>
                         <tr>
@@ -115,11 +126,14 @@
                         </tr>
                     </tbody>
                 </table>
+                <% } else { %>
+                Proposed values not available yet
+                <% } %>
             </div>
         </div>
     </div>
 </div>
-<% } %>
+
 <div class="row">
     <div class="span12">
         <div class="widget widget-table">
@@ -162,4 +176,4 @@ Note: The Department of Revenue is responsible for collecting real estate taxes.
 <br><br>
 <a href="#" class="btn btn-large"><i class="icon-chevron-left"></i> New Search</a>
 <a href="http://www.phila.gov/revenue/RealEstateTax/Default.aspx?txtBRTNo=<%= data.property.account_number %>" class="btn btn-large btn-info" target="_blank">View Tax Balances</a>
-<a href="http://opa.phila.gov/opa.apps/Help/CitizenMain.aspx?sch=Ctrl2&s=1&url=search&id=<%= data.property.property_id %>" class="btn btn-large btn-warning" target="_blank">Submit an Inquiry</a>
+<a href="http://brtwebdev2:82/opa.apps/Help/CitizenMain.aspx?sch=Ctrl2&s=1&url=search&id=<%= data.property.property_id %>" class="btn btn-large btn-warning">Submit an Inquiry</a>

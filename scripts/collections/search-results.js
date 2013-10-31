@@ -63,7 +63,7 @@ define([
                     oldOptions.success(response, options);
                 }
             };
-            Backbone.sync(method, collection, options);
+            return Backbone.sync(method, collection, options);
         }
     });
     

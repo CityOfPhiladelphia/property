@@ -8,19 +8,24 @@ define([
     ,"underscore"
     ,"backbone"
     ,"text!templates/home.html"
-], function($, _, Backbone, HomeTemplate) {
+    ,"i18n!nls/basic"
+], function($, _, Backbone, HomeTemplate, D) {
     var HomeView = Backbone.View.extend({
         className: "home"
-        ,initialize: function() {
+        ,initialize: function(options) {
             _.bindAll(this, "render", "onSubmit");
             this.template = _.template(HomeTemplate);
             this.title = "Property Search";
+            options = options || {};
+            this.method = options.method || "";
+            this.input = options.input || {};
+            this.noresults = options.noresults || false;
         }
         ,events: {
             "submit form": "onSubmit"
         }
         ,render: function() {
-            this.$el.html(this.template({method: this.options.method || null, input: this.options.input || null, noresults: this.options.noresults || false}));
+            this.$el.html(this.template({D: D, method: this.method, input: this.input, noresults: this.noresults}));
             return this;
         }
         ,onSubmit: function(e) {

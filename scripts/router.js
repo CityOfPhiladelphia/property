@@ -5,22 +5,24 @@ define([
     ,"util"
     // Models
     ,"models/property"
+    ,"models/loop"
     // Collections
     ,"collections/search-results"
     // Views
     ,"views/home"
     ,"views/disclaimer"
     ,"views/property"
+    ,"views/loop"
     ,"views/search-results"
     ,"views/search-results-row"
     ,"views/error"
-], function($, _, Backbone, util, Property, SearchResults, HomeView, DisclaimerView, PropertyView, SearchResultsView, SearchResultsRowView, ErrorView) {
+], function($, _, Backbone, util, Property, Loop, SearchResults, HomeView, DisclaimerView, PropertyView, LoopView, SearchResultsView, SearchResultsRowView, ErrorView) {
     "use strict";
     
     var AppRouter = Backbone.Router.extend({
         routes: {
             "": "home"
-            ,"account/:account": "account"
+            ,"account/:account(/*path)": "account"
             ,"address/:address(/:unit)": "address"
             ,"block/:hundred/:street": "block"
             ,"intersection/:street1/:street2": "intersection"
@@ -62,24 +64,44 @@ define([
          * View a specific property by OPA Account Number
          * Called when a user enters an Account # or when the address they enter finds one account # from ulrs311
          */
-        ,account: function(account) {
+        ,account: function(account, path) {
             var self = this
+                ,promises = []
+                ,view
                 ,input = {account: decodeURIComponent(account)};
-            //app.properties = new app.Collections.Properties(null, {actnum: actnum});
+            path = path ? path.toLowerCase() : "";
+            
             var property = new Property({input: input});
+            promises.push(property.fetch());
+            
+            // If path specified
+            if(path === "loop") {
+                var loop = new Loop({input: input});
+                promises.push(loop.fetch());
+                
+                view = new LoopView({model: property, loop: loop});
+            } else {
+                view = new PropertyView({model: property});
+            }
+            
             util.loading(true);
-            property.fetch({
-                success: function(model, response, options) {
-                    util.loading(false);
-                    var propertyView = new PropertyView({model: model});
-                    self.showView(propertyView);
+            $.when.apply($, promises)
+            .done(function() {
+                util.loading(false);
+                self.showView(view);
+            })
+            .fail(function(xhr) {
+                util.loading(false);
+                
+                // If response is 400-499, it means the account couldn't be found; go back to search page
+                // TODO: Ensure this works with JSONP
+                if(xhr.status !== undefined && xhr.status >= 400 && xhr.status < 500) {
+                    var homeView = new HomeView({method: "account", input: input, noresults: true});
+                    self.showView(homeView);
                 }
-                ,error: function(model, xhr, options) {
-                    util.loading(false);
-                    self.error(model, xhr, options
-                        ,"An error occurred while finding the property in the database. Please try again."
-                        ,{method: "account", input: input, noresults: true}
-                    );
+                // Otherwise, something went wrong; go to error page
+                else {
+                    self.error(xhr, "account-fail");
                 }
             });
         }
@@ -89,29 +111,35 @@ define([
          */
         ,address: function(address, unit) {
             var self = this
+                ,promises = []
                 ,input = {address: decodeURIComponent(address), unit: unit ? decodeURIComponent(unit) : null};
+            
             var searchResults = new SearchResults(null, {input: input, method: "address"});
+            promises.push(searchResults.fetch());
+            
             util.loading(true);
-            searchResults.fetch({
-                success: function(collection, response, options) {
-                    util.loading(false);
-                    if(collection.length === 1) {
-                        // If we found 1 account number, view it
-                        self.navigate("account/" + collection.at(0).get("account_number"), {trigger: true, replace: true});
-                    } else {
-                        // If we found multiple account numbers, get the addresses of each
-                        //self.multiple(collection.pluck("TopicID"));
-                        var searchResultsView = new SearchResultsView({collection: collection});
-                        self.showView(searchResultsView);
-                    }
+            $.when.apply($, promises)
+            .done(function() {
+                util.loading(false);
+                
+                // If no results found, go back to search page
+                if( ! searchResults.length) {
+                    var homeView = new HomeView({method: "address", input: input, noresults: true});
+                    self.showView(homeView);
                 }
-                ,error: function(collection, xhr, options) {
-                    util.loading(false);
-                    self.error(collection, xhr, options
-                        ,"An error occurred while verifying the address. Please try again."
-                        ,{method: "address", input: input, noresults: true}
-                    );
+                // If we found 1 account number, go to that account page
+                else if(searchResults.length === 1) {
+                    self.navigate("account/" + searchResults.at(0).get("account_number"), {trigger: true, replace: true});
                 }
+                // If we found multiple account numbers, go to multiple results page
+                else {
+                    var searchResultsView = new SearchResultsView({collection: searchResults});
+                    self.showView(searchResultsView);
+                }
+            })
+            .fail(function(collection, xhr, options) {
+                util.loading(false);
+                self.error(xhr, "address-fail");
             });
         }
         /**
@@ -119,22 +147,31 @@ define([
          */
         ,block: function(hundred, street) {
             var self = this
+                ,promises = []
                 ,input = {hundred: decodeURIComponent(hundred), street: decodeURIComponent(street)};
+                
             var searchResults = new SearchResults(null, {input: input, method: "block"});
+            promises.push(searchResults.fetch());
+            
             util.loading(true);
-            searchResults.fetch({
-                success: function(collection, response, options) {
-                    util.loading(false);
-                    var searchResultsView = new SearchResultsView({collection: collection});
+            $.when.apply($, promises)
+            .done(function() {
+                util.loading(false);
+                
+                // If no results found, go back to search page
+                if( ! searchResults.length) {
+                    var homeView = new HomeView({method: "block", input: input, noresults: true});
+                    self.showView(homeView);
+                }
+                // Otherwise, go to multiple results page
+                else {
+                    var searchResultsView = new SearchResultsView({collection: searchResults});
                     self.showView(searchResultsView);
                 }
-                ,error: function(collection, xhr, options) {
-                    util.loading(false);
-                    self.error(collection, xhr, options
-                        ,"An error occurred while verifying the address. Please try again."
-                        ,{method: "block", input: input, noresults: true}
-                    );
-                }
+            })
+            .fail(function(collection, xhr, options) {
+                util.loading(false);
+                self.error(xhr, "address-fail");
             });
         }
         /**
@@ -142,61 +179,41 @@ define([
          */
         ,intersection: function(street1, street2) {
             var self = this
+                ,promises = []
                 ,input = {street1: decodeURIComponent(street1), street2: decodeURIComponent(street2)};
+                
             var searchResults = new SearchResults(null, {input: input, method: "intersection"});
+            promises.push(searchResults.fetch());
+            
             util.loading(true);
-            searchResults.fetch({
-                success: function(collection, response, options) {
-                    util.loading(false);
-                    var searchResultsView = new SearchResultsView({collection: collection});
+            $.when.apply($, promises)
+            .done(function() {
+                util.loading(false);
+                
+                // If no results found, go back to search page
+                if( ! searchResults.length) {
+                    var homeView = new HomeView({method: "intersection", input: input, noresults: true});
+                    self.showView(homeView);
+                }
+                // Otherwise, go to multiple results page
+                else {
+                    var searchResultsView = new SearchResultsView({collection: searchResults});
                     self.showView(searchResultsView);
                 }
-                ,error: function(collection, xhr, options) {
-                    util.loading(false);
-                    self.error(collection, xhr, options
-                        ,"An error occurred while verifying the address. Please try again."
-                        ,{method: "intersection", input: input, noresults: true}
-                    );
-                }
-            });
-        }
-        /**
-         * Find comparable properties by EqID and Building Code
-         */
-        ,comparable: function(eqid, bldgcd) {
-            var self = this
-                ,input = {eqid: decodeURIComponent(eqid), bldgcd: decodeURIComponent(bldgcd)};
-            var searchResults = new SearchResults(null, {input: input, method: "comparable"});
-            util.loading(true);
-            searchResults.fetch({
-                success: function(collection, response, options) {
-                    util.loading(false);
-                    var searchResultsView = new SearchResultsView({collection: collection});
-                    self.showView(searchResultsView);
-                }
-                ,error: function(collection, xhr, options) {
-                    util.loading(false);
-                    self.error(collection, xhr, options
-                        ,"An error occurred while verifying the address. Please try again."
-                        ,{method: "comparable", input: input, noresults: true}
-                    );
-                }
+            })
+            .fail(function(collection, xhr, options) {
+                util.loading(false);
+                self.error(xhr, "address-fail");
             });
         }
         /**
          * Common error handling. Optionally brings user back to search/home page on a 404 if home404data is provided
          * TODO: Add Google Analytics/Muscula error logging here
          */
-        ,error: function(collection, xhr, options, message, home404data) {
-            var url = typeof collection.url === "function" ? collection.url() : collection.url;
-            this.logError(typeof xhr === "object" && xhr.status !== undefined ? xhr.status : "N/A", url);
-            if(typeof home404data === "object" && typeof xhr === "object" && xhr.status >= 400 && xhr.status < 500) {
-                var homeView = new HomeView(home404data);
-                this.showView(homeView);
-            } else {
-                var errorView = new ErrorView({message: message || "An error occurred. Please try again."});
-                this.showView(errorView);
-            }
+        ,error: function(xhr, message) {
+            this.logError(message);
+            var errorView = new ErrorView({message: message});
+            this.showView(errorView);
         }
         /**
          * Disclaimer / Terms of Use page
@@ -213,9 +230,9 @@ define([
             window._gaq.push(["_trackPageview", "/" + url]);
             if(window.DEBUG) console.log("Google Analytics", url);
         }
-        ,logError: function(error, url) {
-            window._gaq.push(["_trackEvent", "ErrorCaught", error + "", url]);
-            if(window.DEBUG) console.log("Google Analytics Error", error, url);
+        ,logError: function(error) {
+            window._gaq.push(["_trackEvent", "ErrorCaught", error + "", Backbone.history.fragment]);
+            if(window.DEBUG) console.log("Google Analytics Error", error, Backbone.history.fragment);
         }
     });
     

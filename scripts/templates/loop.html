@@ -1,0 +1,96 @@
+<h1>
+    <%= data.property.full_address %>
+    <% if($.trim(data.property.unit)) { %>
+        <span class="unit">Unit: <%= data.property.unit.replace(/^0+/, "") %></span>
+    <% } %>
+    <small>Account # <%= data.property.account_number %></small>
+</h1>
+<div>
+    <ul class="nav nav-tabs">
+        <li><a href="#account/<%= data.property.account_number %>">Assessment</a></li>
+        <li class="active"><a href="#account/<%= data.property.account_number %>/loop">Tax Relief</a></li>
+    </ul>
+</div>
+
+<div class="row">
+    <div class="span12">
+        <div class="widget">
+            <div class="widget-header">
+                <i class="icon-home"></i>
+                <h3>Longterm Owner-Occupants Program</h3>
+            </div>
+            <div class="widget-content">
+            <% if(data.loop.parcel === undefined) { %>
+            
+                This property is not eligible for the Longtime Owner-Occupants Program
+                
+            <% } else { %>
+
+                <form>
+                    <div class="control-group">
+                        1. Are all Real Estate Taxes on the property
+                        <label class="radio">
+                            <input type="radio" name="taxes" value="current">
+                            Current
+                        </label>
+                        <label class="radio">
+                            <input type="radio" name="taxes" value="not-in-default">
+                            Subject to a payment agreement that is not in default
+                        </label>
+                        <label class="radio">
+                            <input type="radio" name="taxes" value="pending-determination">
+                            Subject to a payment agreement application that is pending determination by the Department of Revenue
+                        </label>
+                        <label class="radio">
+                            <input type="radio" name="taxes" value="none">
+                            None of the above
+                        </label>
+                    </div>
+                    <div class="control-group">
+                        2. Have you continuously owned and occupied the property as your primary residence and domicile since at least July 1, 2003?
+                        <label class="radio">
+                            <input type="radio" name="since2003" value="yes">
+                            Yes
+                        </label>
+                        <label class="radio">
+                            <input type="radio" name="since2003" value="no">
+                            No
+                        </label>
+                    </div>
+                    
+                    <div class="control-group">
+                        <label for="count">3. How many people live in this household?</label>
+                        <input type="text" name="count" id="count" data-inputmask="'mask': '9', 'repeat': '*'">
+                    </div>
+                    
+                    <div class="control-group">
+                        <label for="income">4. What is the total annual income for all members of the household?</label>
+                        <div class="input-prepend input-append">
+                            <span class="add-on">$</span>
+                            <input type="text" class="span2" name="income" id="income" data-inputmask="'mask': '9', 'repeat': '*'">
+                            <span class="add-on">.00</span>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary btn-large">Check Eligibility</button>
+                </form>
+                    
+                <div class="alert alert-success">
+                    You may be eligible for LOOP, but you must apply by January 15, 2013.<br><br>
+                    
+                    2014 Tax Bill without LOOP: $<%= data.util.formatNumber(data.loop.tax2014, true) %><br>
+                    2014 Tax Bill with LOOP: $<%= data.util.formatNumber(data.loop.loop2014, true) %><br>
+                    Potential savings: $<%= data.util.formatNumber(data.loop.tax2014 - data.loop.loop2014, true) %>
+                </div>
+                
+                <div class="alert alert-error">
+                    You do not appear eligible for LOOP, but you may be eligible for other programs.
+                </div>
+
+            <% } %>
+            </div>
+        </div>
+    </div>
+</div>
+
+<a href="#" class="btn btn-large"><i class="icon-chevron-left"></i> New Search</a>

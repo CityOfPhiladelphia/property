@@ -23,7 +23,7 @@ define([
      */
     util.formatNumber = function(x, decimals) {
         if(isNaN(x) || x === null) return x;
-        if(decimals !== undefined) x = decimals ? Math.round(x * 100) / 100 : Math.round(x);
+        if(decimals !== undefined) x = (decimals ? Math.round(x * 100) / 100 : Math.round(x));
         return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     };
     

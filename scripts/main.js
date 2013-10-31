@@ -2,7 +2,9 @@ window.requirejs = window.requirejs || {};
 (function(requirejs) {
     "use strict";
     
-    // Setting up the third-party libraries
+    /**
+     * Set up the third-party libraries
+     */
     requirejs.config({
         baseUrl: "scripts/"
         ,paths: {
@@ -15,15 +17,16 @@ window.requirejs = window.requirejs || {};
                 ,"lib/underscore-min"
             ]
             ,"backbone": [
-                "//cdnjs.cloudflare.com/ajax/libs/backbone.js/1.0.0/backbone-min"
+                "//cdnjs.cloudflare.com/ajax/libs/backbone.js/1.1.0/backbone-min"
                 ,"lib/backbone-min"
             ]
             ,"jquery-bootstrap": [
                 "//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/js/bootstrap.min"
                 ,"lib/bootstrap.min"
             ]
-            ,"jquery-jsonp": "lib/jquery-jsonp.min"
             ,"jquery-cookie": "lib/jquery.cookie"
+            ,"jquery-serializeObject": "lib/jquery.serializeObject"
+            ,"jquery-inputmask": "lib/jquery.inputmask"
         }
         ,shim: {
             "underscore": {
@@ -33,22 +36,65 @@ window.requirejs = window.requirejs || {};
                 exports: "Backbone"
                 ,deps: ["jquery", "underscore"]
             }
-            ,"jquery-jsonp": {
-                deps: ["jquery"]
-            }
             ,"jquery-bootstrap": {
                 deps: ["jquery"]
             }
             ,"jquery-cookie": {
                 deps: ["jquery"]
             }
+            ,"jquery-serializeObject": {
+                deps: ["jquery"]
+            }
+            ,"jquery-inputmask": {
+                deps: ["jquery"]
+            }
         }
+        //,config: { i18n: { locale: "es" } }
     });
     
-    // Starting the application
-    require([
-        "app"
-    ], function(app) {
-        app.init();
+    require(["jquery", "jquery-cookie"], function($) {
+        requirejs.config({config: { i18n: { locale: $.cookie("language") || "en" } }});
     });
+    
+    /**
+     * Configure and initialize the application
+     */
+    require([
+        "jquery"
+        ,"underscore"
+        ,"backbone"
+        ,"router"
+        ,"jquery-bootstrap"
+        ,"jquery-cookie"
+        //,"jquery-serializeObject"
+        //,"jquery-inputmask"
+    ], function($, _, Backbone, Router) {
+        
+        /**
+         * Global configs
+         */
+        window.DEBUG = false; // Global
+        _.templateSettings.variable = "data"; // Namespace for template data
+        $.ajaxSetup({cache: true, timeout: 15000}); // Cache ajax requests
+        
+        /**
+         * If no CORS support, use jsonp
+         */
+        Backbone.ajax = function() {
+            if( ! $.support.cors && arguments.length) {
+                arguments[0].cache = "true";
+                arguments[0].timeout = 15000;
+                arguments[0].dataType = "jsonp";
+                return Backbone.$.ajax.apply(Backbone.$, arguments);
+            }
+            return Backbone.$.ajax.apply(Backbone.$, arguments);
+        };
+        
+        /**
+         * Initialize the application
+         */
+        new Router();
+        Backbone.history.start();
+    });
+    
 })(window.requirejs);
