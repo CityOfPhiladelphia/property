@@ -36,6 +36,7 @@ define([
          */
         ,initialize: function() {
             window._gaq = window._gaq || [];
+            this.cache = {id: null, model: null};
         }
         /**
          * Switch pages while preserving events
@@ -71,8 +72,16 @@ define([
                 ,input = {account: decodeURIComponent(account)};
             path = path ? path.toLowerCase() : "";
             
-            var property = new Property({input: input});
-            promises.push(property.fetch());
+            // If we've already fetched this model, reuse it rather than fetching again
+            var property;
+            if(this.cache.id === input.account) {
+                property = this.cache.model;
+            } else {
+                property = new Property({input: input});
+                promises.push(property.fetch());
+                this.cache.id = input.account;
+                this.cache.model = property;
+            }
             
             // If path specified
             if(path === "loop") {

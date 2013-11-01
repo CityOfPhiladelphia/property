@@ -2,7 +2,7 @@
     <a href="#account/<%= data.searchResultsRow.account_number %>"><%= data.searchResultsRow.full_address %><% if(data.searchResultsRow.unit) { %> <span class="unit">Unit: <%= data.searchResultsRow.unit.replace(/^0+/, "") %></span><% } %></a>
 </td>
 <td class="hidden-phone">
-    <%= _.pluck(data.searchResultsRow.ownership, "name").join("<br>") %>
+    <%= data.searchResultsRow.ownership.owners.join("<br>") %>
 </td>
 <td class="hidden-phone">
     <%= data.util.friendlyDate(data.searchResultsRow.sales_information.sales_date) %>

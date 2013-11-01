@@ -8,7 +8,7 @@
 <div>
     <ul class="nav nav-tabs">
         <li class="active"><a href="#account/<%= data.property.account_number %>">Assessment</a></li>
-        <li><a href="#account/<%= data.property.account_number %>/loop">Tax Relief</a></li>
+        <li><a href="#account/<%= data.property.account_number %>/loop">LOOP Tax</a></li>
     </ul>
 </div>
 <div class="row">
@@ -33,7 +33,7 @@
                                 <% if(data.property.ownership.liaison) { %>
                                     <%= data.property.ownership.liaison %><br>
                                 <% } %>
-                                <% var addr = data.property.ownership.mailing_address %>
+                                <% var addr = data.property.ownership.mailing_address || {} %>
                                 <address><%= [addr.street, [addr.city, addr.state].join(" "), addr.zip].join("<br>") %></address>
                             </li>
                         </ul>
@@ -41,7 +41,7 @@
                     <div class="span2">
                         <ul class="nav nav-list">
                             <li class="nav-header">Property Unit</li>
-                            <li><%= data.property.unit || "None" %></li>
+                            <li><%= data.property.unit ? data.property.unit.replace(/^0+/, "") : "None" %></li>
                             <li class="nav-header">Property Zip</li>
                             <li><%= data.property.zip %>
                             <li class="nav-header">Sale Date</li>

@@ -27,6 +27,7 @@ window.requirejs = window.requirejs || {};
             ,"jquery-cookie": "lib/jquery.cookie"
             ,"jquery-serializeObject": "lib/jquery.serializeObject"
             ,"jquery-inputmask": "lib/jquery.inputmask"
+            ,"jquery-validate": "lib/jquery.validate"
         }
         ,shim: {
             "underscore": {
@@ -36,17 +37,13 @@ window.requirejs = window.requirejs || {};
                 exports: "Backbone"
                 ,deps: ["jquery", "underscore"]
             }
-            ,"jquery-bootstrap": {
-                deps: ["jquery"]
-            }
-            ,"jquery-cookie": {
-                deps: ["jquery"]
-            }
-            ,"jquery-serializeObject": {
-                deps: ["jquery"]
-            }
-            ,"jquery-inputmask": {
-                deps: ["jquery"]
+            ,"jquery-bootstrap": ["jquery"]
+            ,"jquery-cookie": ["jquery"]
+            ,"jquery-serializeObject": ["jquery"]
+            ,"jquery-inputmask": ["jquery"]
+            ,"jquery-validate": {
+                exports: "jquery.validate"
+                ,deps: ["jquery"]
             }
         }
         //,config: { i18n: { locale: "es" } }

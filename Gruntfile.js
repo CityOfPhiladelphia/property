@@ -21,7 +21,7 @@ module.exports = function (grunt) {
     cssmin: {
       minify: {
         expand: true,
-        src: ['styles/styles.css', 'styles/lib/widget.css', 'styles/lib/bootstrap-philagov/bootstrap-philagov.css'],
+        src: ['styles/styles.css', 'styles/loop.css', 'styles/lib/widget.css', 'styles/lib/bootstrap-philagov/bootstrap-philagov.css'],
         dest: 'temp/styles/',
         ext: '.min.css'
       },
@@ -30,7 +30,8 @@ module.exports = function (grunt) {
           'build/styles/opa.min.css': [
             'temp/styles/styles/lib/bootstrap-philagov/bootstrap-philagov.min.css',
             'temp/styles/styles/lib/widget.min.css',
-            'temp/styles/styles/styles.min.css'
+            'temp/styles/styles/styles.min.css',
+            'temp/styles/styles/loop.min.css'
           ]
         }
       }
