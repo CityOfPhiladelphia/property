@@ -1,72 +1,76 @@
 <div class="hero">
-    <h1>Property Search</h1>
-    <h3>You can use this application to search and compare property data in the City of Philadelphia</h3>
+    <h1><%= data.D("app-title") %></h1>
+    <h3><%= data.D("app-subtitle") %></h3>
 </div>
 <% if(data.noresults) { %>
-<div class="alert alert-error">No matches found for <code><%= _.compact(_.values(data.input)).join("</code> <code>") %></code>. <%= data.method !== "account" ? "For best results, try entering the account number of your property." : "" %> <a href="http://brtwebdev2:82/opa.apps/Help/CitizenMain.aspx?sch=Ctrl2">Click here to submit an inquiry</a>.</div>
+<div class="alert alert-error">
+    <%= data.D("no-matches", "<code>" + _.compact(_.values(data.input)).join("</code> <code>") + "</code>") %>
+    <%= data.method !== "account" ? data.D("for-best-results") : "" %>
+    <a href="http://brtwebdev2:83/opa.apps/Help/CitizenMain.aspx?sch=Ctrl2"><%= data.D("click-submit-inquiry") %></a>
+</div>
 <% } %>
 <div id="search-tabs" class="tabbable">
     <ul class="nav nav-tabs">
-        <li<% if(data.method === "address" || ! data.method) { %> class="active"<% } %>><a href="#byAddress" data-toggle="tab">Address</a></li>
-        <li<% if(data.method === "account") { %> class="active"<% } %>><a href="#byAccount" data-toggle="tab">Account</a></li>
-        <li<% if(data.method === "block") { %> class="active"<% } %>><a href="#byBlock" data-toggle="tab">Block</a></li>
-        <li<% if(data.method === "intersection") { %> class="active"<% } %>><a href="#byIntersection" data-toggle="tab">Intersection</a></li>
+        <li<% if(data.method === "address" || ! data.method) { %> class="active"<% } %>><a href="#byAddress" data-toggle="tab"><%= data.D("address") %></a></li>
+        <li<% if(data.method === "account") { %> class="active"<% } %>><a href="#byAccount" data-toggle="tab"><%= data.D("account") %></a></li>
+        <li<% if(data.method === "block") { %> class="active"<% } %>><a href="#byBlock" data-toggle="tab"><%= data.D("block") %></a></li>
+        <li<% if(data.method === "intersection") { %> class="active"<% } %>><a href="#byIntersection" data-toggle="tab"><%= data.D("intersection") %></a></li>
     </ul>
     <div class="tab-content row">
         <div class="tab-pane<% if(data.method === "address" || ! data.method) { %> active<% } %>" id="byAddress">
             <form data-method="address">
                 <div class="controls-row">
                     <div class="control-group span4">
-                        <label for="address">Address</label>
-                        <input type="text" name="address" id="address" placeholder="ex. 1234 Market St" class="span4" autofocus value="<%= data.input.address %>">
+                        <label for="address"><%= data.D("address") %></label>
+                        <input type="text" name="address" id="address" placeholder="<%= data.D("ex") %> 1234 Market St" class="span4" autofocus value="<%= data.input.address %>">
                     </div>
                     <div class="control-group span2">
-                        <label for="unit">Unit</label>
-                        <input type="text" name="unit" id="unit" placeholder="ex. B" class="span2">
+                        <label for="unit"><%= data.D("unit") %></label>
+                        <input type="text" name="unit" id="unit" placeholder="<%= data.D("ex") %> B" class="span2">
                     </div>
                 </div>
-                <button class="btn btn-primary btn-large span6" type="submit"><i class="icon-search icon-white"></i> Search</button>
+                <button class="btn btn-primary btn-large span6" type="submit"><i class="icon-search icon-white"></i> <%= data.D("search") %></button>
             </form>
         </div>
         <div class="tab-pane<% if(data.method === "account") { %> active<% } %>" id="byAccount">
             <form data-method="account">
                 <div class="controls-row">
                     <div class="control-group span6">
-                        <label for="account">Account #</label>
-                        <input type="text" name="account" id="account" placeholder="ex. 883309000" class="span6" value="<%= data.input.account %>">
+                        <label for="account"><%= data.D("account-no") %></label>
+                        <input type="text" name="account" id="account" placeholder="<%= data.D("ex") %> 883309000" class="span6" value="<%= data.input.account %>">
                     </div>
                 </div>
-                <button class="btn btn-primary btn-large span6" type="submit"><i class="icon-search icon-white"></i> Search</button>
+                <button class="btn btn-primary btn-large span6" type="submit"><i class="icon-search icon-white"></i> <%= data.D("search") %></button>
             </form>
         </div>
         <div class="tab-pane<% if(data.method === "block") { %> active<% } %>" id="byBlock">
             <form data-method="block">
                 <div class="controls-row">
                     <div class="control-group span2">
-                        <label for="hundred">Hundred</label>
-                        <input type="text" name="hundred" id="hundred" placeholder="ex. 1200" class="span2" value="<%= data.input.hundred %>">
+                        <label for="hundred"><%= data.D("hundred") %></label>
+                        <input type="text" name="hundred" id="hundred" placeholder="<%= data.D("ex") %> 1200" class="span2" value="<%= data.input.hundred %>">
                     </div>
                     <div class="control-group span4">
-                        <label for="street">Street</label>
-                        <input type="text" name="street" id="street" placeholder="ex. Market St" class="span4" value="<%= data.input.street %>">
+                        <label for="street"><%= data.D("street") %></label>
+                        <input type="text" name="street" id="street" placeholder="<%= data.D("ex") %> Market St" class="span4" value="<%= data.input.street %>">
                     </div>
                 </div>
-                <button class="btn btn-primary btn-large span6" type="submit"><i class="icon-search icon-white"></i> Search</button>
+                <button class="btn btn-primary btn-large span6" type="submit"><i class="icon-search icon-white"></i> <%= data.D("search") %></button>
             </form>
         </div>
         <div class="tab-pane<% if(data.method === "intersection") { %> active<% } %>" id="byIntersection">
             <form data-method="intersection">
                 <div class="controls-row">
                     <div class="control-group span3">
-                        <label for="street1">Street 1</label>
-                        <input type="text" name="street1" id="street1" placeholder="ex. 12th St" class="span3" value="<%= data.input.street1 %>">
+                        <label for="street1"><%= data.D("street1") %></label>
+                        <input type="text" name="street1" id="street1" placeholder="<%= data.D("ex") %> 12th St" class="span3" value="<%= data.input.street1 %>">
                     </div>
                     <div class="control-group span3">
-                        <label for="street2">Street 2</label>
-                        <input type="text" name="street2" id="street2" placeholder="ex. Market St" class="span3" value="<%= data.input.street2 %>">
+                        <label for="street2"><%= data.D("street2") %></label>
+                        <input type="text" name="street2" id="street2" placeholder="<%= data.D("ex") %> Market St" class="span3" value="<%= data.input.street2 %>">
                     </div>
                 </div>
-                <button class="btn btn-primary btn-large span6" type="submit"><i class="icon-search icon-white"></i> Search</button>
+                <button class="btn btn-primary btn-large span6" type="submit"><i class="icon-search icon-white"></i> <%= data.D("search") %></button>
             </form>
         </div>
     </div>
@@ -74,4 +78,15 @@
 
 <hr>
 
-<footer>By using this application you agree to its <a href="#disclaimer">Terms of Use</a>.</footer>
+<footer><%= data.D("disc-terms", "<a href=\"#disclaimer\">", "</a>") %></footer>
+        
+<ul id="language" class="nav nav-pills pull-right">
+    <% var language = data.D("language") %>
+    <li<% if(language === "en"){ %> class="active"<%}%>><a href="" data-language="en">English</a></li>
+    <li<% if(language === "rev"){ %> class="active"<%}%>><a href="" data-language="rev">Reverse</a></li>
+    <!--<li<% if(language === "es"){ %> class="active"<%}%>><a href="" data-language="es">Español</a></li>
+    <li<% if(language === "zh"){ %> class="active"<%}%>><a href="" data-language="zh">繁體中文</a></li>
+    <li<% if(language === "ko"){ %> class="active"<%}%>><a href="" data-language="ko">한국어</a></li>
+    <li<% if(language === "ru"){ %> class="active"<%}%>><a href="" data-language="ru">Русский</a></li>
+    <li<% if(language === "vi"){ %> class="active"<%}%>><a href="" data-language="vi">Tiếng Việt</a></li>-->
+</ul>

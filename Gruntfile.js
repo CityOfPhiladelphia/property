@@ -9,6 +9,10 @@ module.exports = function (grunt) {
           mainConfigFile: './scripts/main.js',
           out: './build/scripts/main.js',
           optimize: 'uglify',
+          //findNestedDependencies: true,
+          //generateSourceMaps: true,
+          //preserveLicenseComments: false,
+          include: ['i18n'],
           paths: {
             'jquery': '//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min',
             'underscore': '//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore-min',
@@ -44,7 +48,8 @@ module.exports = function (grunt) {
       main: {
         files: [
           {expand: true, src: 'images/*', dest: 'build/'},
-          {expand: true, src: 'scripts/lib/**', dest: 'build/scripts/lib/', flatten: true, filter: 'isFile'}
+          {expand: true, src: 'scripts/lib/**', dest: 'build/scripts/lib/', flatten: true, filter: 'isFile'},
+          {src: 'scripts/nls/**', dest: 'build/'}
         ]
       }
     },

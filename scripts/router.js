@@ -110,7 +110,7 @@ define([
                 }
                 // Otherwise, something went wrong; go to error page
                 else {
-                    self.error(xhr, "account-fail");
+                    self.error(xhr, "error-account-fail");
                 }
             });
         }
@@ -148,7 +148,7 @@ define([
             })
             .fail(function(collection, xhr, options) {
                 util.loading(false);
-                self.error(xhr, "address-fail");
+                self.error(xhr, "error-address-fail");
             });
         }
         /**
@@ -180,7 +180,7 @@ define([
             })
             .fail(function(collection, xhr, options) {
                 util.loading(false);
-                self.error(xhr, "address-fail");
+                self.error(xhr, "error-address-fail");
             });
         }
         /**
@@ -212,7 +212,7 @@ define([
             })
             .fail(function(collection, xhr, options) {
                 util.loading(false);
-                self.error(xhr, "address-fail");
+                self.error(xhr, "error-address-fail");
             });
         }
         /**

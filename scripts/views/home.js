@@ -8,12 +8,11 @@ define([
     ,"underscore"
     ,"backbone"
     ,"text!templates/home.html"
-    ,"i18n!nls/basic"
-], function($, _, Backbone, HomeTemplate, D) {
+], function($, _, Backbone, HomeTemplate) {
     var HomeView = Backbone.View.extend({
         className: "home"
         ,initialize: function(options) {
-            _.bindAll(this, "render", "onSubmit");
+            _.bindAll(this, "render", "onSubmit", "onClickLanguage");
             this.template = _.template(HomeTemplate);
             this.title = "Property Search";
             options = options || {};
@@ -23,9 +22,10 @@ define([
         }
         ,events: {
             "submit form": "onSubmit"
+            ,"click #language a": "onClickLanguage"
         }
         ,render: function() {
-            this.$el.html(this.template({D: D, method: this.method, input: this.input, noresults: this.noresults}));
+            this.$el.html(this.template({method: this.method, input: this.input, noresults: this.noresults}));
             return this;
         }
         ,onSubmit: function(e) {
@@ -68,6 +68,12 @@ define([
         }
         ,sanitize: function(input, type) { // TODO: Remove double spaces (should this allow hyphens?)
             return typeof input === "string" ? input.replace(type === "actnum" ? /[^\d]/g : /[^\w\d\s-]/g, "") : "";
+        }
+        ,onClickLanguage: function(e) {
+            e.preventDefault();
+            var language = $(e.currentTarget).data("language") || "en";
+            $.cookie("language", language);
+            window.location.reload();
         }
     });
     

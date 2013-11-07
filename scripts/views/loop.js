@@ -36,7 +36,7 @@ define([
             "submit form": "onSubmit"
         }
         ,render: function() {
-            this.$el.html(this.template({property: this.model.toJSON(), loop: this.loop.toJSON(), util: util}));
+            this.$el.html(this.template({property: this.model.toJSON(), loop: this.loop.toJSON(), util: util, incomeRequirements: this.incomeRequirements}));
             this.title = this.model.get("full_address");
             //this.$(":input").inputmask(); // Activate input masks defined in markup
             this.$("form").validate();
@@ -51,7 +51,8 @@ define([
                     ,count: parseInt(e.currentTarget.count.value, 10)
                     ,income: parseInt(e.currentTarget.income.value, 10)
                 };
-            if(data.taxstatus === "yes" && data.ownocc === "yes" && data.count > 0 && this.checkIncomeRequirements(data.count, data.income)) {
+            // Income requirements not required until legislation passes
+            if(data.taxstatus === "yes" && data.ownocc === "yes" && data.count > 0/* && this.checkIncomeRequirements(data.count, data.income)*/) {
                 this.$(".eligibility-answer.alert-error").hide();
                 this.$(".eligibility-answer.alert-success").show();
             } else {
@@ -66,7 +67,3 @@ define([
     
     return Loop;
 });
-/*
-Household Size       1              2              3              4              5              6              7              8
-Max Income           $83,200     $95,050     $106,950  $118,800  $128,350  $128,350  $147,350  $156,850
-*/

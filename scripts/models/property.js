@@ -32,19 +32,6 @@ define([
                 ,certification_year: parseInt(property.valuation_history[0].certification_year, 10) + 1 // proposed_valuation has no year field, so we increment from previous_value's
             };*/
             
-            // Property Conditions Lookup values
-            var conditions = [
-                "Not Applicable"
-                ,"1"
-                ,"New / Rehabbed"
-                ,"Above Average"
-                ,"Average"
-                ,"Below Average"
-                ,"Vacant"
-                ,"Sealed / Structurally Compliant"
-            ];
-            property.characteristics.exterior_condition = conditions[property.characteristics.exterior_condition];
-            
             return property;
         }
         //,sync: function(method, collection, options) {

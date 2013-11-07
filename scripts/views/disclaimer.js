@@ -9,14 +9,14 @@ define([
     var Disclaimer = Backbone.View.extend({
         className: "disclaimer"
         ,initialize: function() {
-            this.template = DisclaimerTemplate;
+            this.template = _.template(DisclaimerTemplate);
             this.title = "Disclaimer";
         }
         ,events: {
             "click .accept": "onAccept"
         }
         ,render: function() {
-            this.$el.html(this.template);
+            this.$el.html(this.template());
             return this;
         }
         ,onAccept: function(e) {

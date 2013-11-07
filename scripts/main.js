@@ -28,6 +28,7 @@ window.requirejs = window.requirejs || {};
             ,"jquery-serializeObject": "lib/jquery.serializeObject"
             ,"jquery-inputmask": "lib/jquery.inputmask"
             ,"jquery-validate": "lib/jquery.validate"
+            ,"underscore-template-helpers": "lib/underscore.template-helpers"
         }
         ,shim: {
             "underscore": {
@@ -39,22 +40,13 @@ window.requirejs = window.requirejs || {};
             }
             ,"jquery-bootstrap": ["jquery"]
             ,"jquery-cookie": ["jquery"]
-            ,"jquery-serializeObject": ["jquery"]
-            ,"jquery-inputmask": ["jquery"]
-            ,"jquery-validate": {
-                exports: "jquery.validate"
-                ,deps: ["jquery"]
-            }
+            ,"jquery-validate": ["jquery"]
         }
-        //,config: { i18n: { locale: "es" } }
-    });
-    
-    require(["jquery", "jquery-cookie"], function($) {
-        requirejs.config({config: { i18n: { locale: $.cookie("language") || "en" } }});
+        //,config: { i18n: { locale: "rev" } }
     });
     
     /**
-     * Configure and initialize the application
+     * Set the language first so require.js knows which strings.js file to fetch
      */
     require([
         "jquery"
@@ -63,35 +55,56 @@ window.requirejs = window.requirejs || {};
         ,"router"
         ,"jquery-bootstrap"
         ,"jquery-cookie"
-        //,"jquery-serializeObject"
-        //,"jquery-inputmask"
+        ,"underscore-template-helpers"
+        //,"i18n"
     ], function($, _, Backbone, Router) {
-        
+        requirejs.config({config: { i18n: { locale: $.cookie("language") || "en" } }});
+    
         /**
-         * Global configs
+         * Configure and initialize the application
          */
-        window.DEBUG = false; // Global
-        _.templateSettings.variable = "data"; // Namespace for template data
-        $.ajaxSetup({cache: true, timeout: 15000}); // Cache ajax requests
-        
-        /**
-         * If no CORS support, use jsonp
-         */
-        Backbone.ajax = function() {
-            if( ! $.support.cors && arguments.length) {
-                arguments[0].cache = "true";
-                arguments[0].timeout = 15000;
-                arguments[0].dataType = "jsonp";
+        require(["i18n!nls/strings"], function(strings) {
+    
+            /**
+             * Global configs
+             */
+            window.DEBUG = false; // Global
+            _.templateSettings.variable = "data"; // Namespace for template data
+            $.ajaxSetup({cache: true, timeout: 15000}); // Cache ajax requests
+            
+            /**
+             * Add dictionary helper
+             * sprintf style logic from http://stackoverflow.com/a/4673436/633406
+             */
+            _.addTemplateHelpers({
+                D: function(key) {
+                    var args = [].slice.call(arguments,1)
+                        ,string = strings[key] || key;
+                    return string.replace(/{(\d+)}/g, function(match, number) { 
+                        return typeof args[number] != 'undefined' ? args[number] : match;
+                    });
+                }
+            });
+            
+            /**
+             * If no CORS support, use jsonp
+             */
+            Backbone.ajax = function() {
+                if( ! $.support.cors && arguments.length) {
+                    arguments[0].cache = "true";
+                    arguments[0].timeout = 15000;
+                    arguments[0].dataType = "jsonp";
+                    return Backbone.$.ajax.apply(Backbone.$, arguments);
+                }
                 return Backbone.$.ajax.apply(Backbone.$, arguments);
-            }
-            return Backbone.$.ajax.apply(Backbone.$, arguments);
-        };
-        
-        /**
-         * Initialize the application
-         */
-        new Router();
-        Backbone.history.start();
+            };
+            
+            /**
+             * Initialize the application
+             */
+            new Router();
+            Backbone.history.start();
+        });
     });
     
 })(window.requirejs);
