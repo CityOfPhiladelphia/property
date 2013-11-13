@@ -59,7 +59,7 @@ define({
     "assessed-imp-exempt": ")tpmexE( tnemevorpmI dessessA",
     "total-assessment": "tnemssessA latoT",
     "loop-full-name": ")POOL( margorP stnapuccO renwO mretgnoL",
-    "loop-property-not-eligibile": ".{0}www.phila.gov/revenue{1} tisiv ,smargorp feiler xat rehto tuoba noitamrofni roF .margorP stnapuccO renwO emitgnoL eht rof elbigile ton si ytreporp sihT",
+    "loop-property-not-eligible": ".{0}www.phila.gov/revenue{1} tisiv ,smargorp feiler xat rehto tuoba noitamrofni roF .margorP stnapuccO renwO emitgnoL eht rof elbigile ton si ytreporp sihT",
     "loop-not-eligible": ".{0}www.phila.gov/revenue{1} tisiv ,smargorp feiler xat tuoba noitamrofni roF .smargorp rehto rof elbigile eb yam uoy tub ,POOL rof elbigile raeppa ton od uoY",
     "loop-eligible": ".0029-686-512 llac ro {0}www.phila.gov/loop{1} tisiv noitamrofni erom roF .uoy ot deliam noitacilppa eht esU .3102 ,51 yraunaJ yb ylppa tsum uoy tub ,POOL rof elbigile eb yam uoY",
     "loop-instructions": ".elbigile era uoy fi kcehc ot mrof siht esU  .sllib xat ytreporp rieht ni sesaercni tnacifingis tsniaga aihpledalihP fo ytiC eht morf feiler rof elbigile era ,stnemeriuqer rehto teem ohw dna ,yllacitamard desaercni evah seulav ytreporp esohw srenwoemoh emitgnol niatreC",
