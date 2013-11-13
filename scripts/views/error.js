@@ -5,13 +5,11 @@ define([
     ,"text!templates/error.html"
 ], function($, _, Backbone, ErrorTemplate) {
     "use strict";
-    
-    var errorMessages = {
-    }
 
     var Error_ = Backbone.View.extend({ // `Error` is reserved word (I think)
         className: "error"
         ,initialize: function(options) {
+            options = options || {};
             this.template = _.template(ErrorTemplate);
             this.message = options.message || "";
             this.title = "Error";

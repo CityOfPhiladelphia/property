@@ -101,9 +101,12 @@ window.requirejs = window.requirejs || {};
             
             /**
              * Initialize the application
+             * TODO: Determine if it's necessary to wrap this in document.ready
              */
-            new Router();
-            Backbone.history.start();
+            $(document).ready(function() {
+                new Router();
+                Backbone.history.start();
+            });
         });
     });
     

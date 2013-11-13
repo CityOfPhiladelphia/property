@@ -14,6 +14,7 @@ define([
         }
         ,events: {
             "click .accept": "onAccept"
+            ,"click #language a": "onClickLanguage"
         }
         ,render: function() {
             this.$el.html(this.template());
@@ -21,6 +22,12 @@ define([
         }
         ,onAccept: function(e) {
             $.cookie("accepted-disclaimer", true);
+        }
+        ,onClickLanguage: function(e) {
+            e.preventDefault();
+            var language = $(e.currentTarget).data("language") || "en";
+            $.cookie("language", language);
+            window.location.reload();
         }
     });
     

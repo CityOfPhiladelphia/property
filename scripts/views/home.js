@@ -12,7 +12,7 @@ define([
     var HomeView = Backbone.View.extend({
         className: "home"
         ,initialize: function(options) {
-            _.bindAll(this, "render", "onSubmit", "onClickLanguage");
+            //_.bindAll(this, "render", "onSubmit", "onClickLanguage");
             this.template = _.template(HomeTemplate);
             this.title = "Property Search";
             options = options || {};

@@ -1,5 +1,5 @@
 <h1><%= data.D("error") %></h1>
-<%= data.D(message) %>
+<% if(data.message) { %><%= data.D(data.message) %><% } %>
 <br><br>
 <a href="#" class="btn btn-large"><i class="icon-chevron-left"></i> <%= data.D("new-search") %></a>
 <a href="#" rel="reload" class="btn btn-large btn-info"><i class="icon-repeat icon-white"></i> <%= data.D("try-again") %></a>
