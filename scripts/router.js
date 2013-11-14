@@ -217,7 +217,6 @@ define([
         }
         /**
          * Common error handling. Optionally brings user back to search/home page on a 404 if home404data is provided
-         * TODO: Add Google Analytics/Muscula error logging here
          */
         ,error: function(xhr, message) {
             this.logError(message);

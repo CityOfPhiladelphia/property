@@ -1,7 +1,6 @@
 /**
  * Home/Search View
  * Handles enhanced <select>, form submission
- * TODO: Add auto focus
  */
 define([
     "jquery"
