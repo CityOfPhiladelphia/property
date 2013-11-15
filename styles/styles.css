@@ -106,3 +106,8 @@ body { margin-bottom: 20px; }
 	-moz-border-radius: 36px;
 	border-radius: 36px;
 }
+
+/* Browse Happy prompt */
+.browsehappy {
+    margin-top: 20px;
+}
