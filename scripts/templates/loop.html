@@ -83,7 +83,7 @@
                 <div class="alert alert-success eligibility-answer">
                     <%= data.D("loop-eligible", "<a href=\"http://www.phila.gov/loop\">", "</a>") %><br><br>
                     
-                    <dl class="dl-horizontal">
+                    <dl>
                         <dt><%= data.D("bill-without-loop") %></dt>
                         <dd>$<%= data.util.formatNumber(data.loop.tax2014, true) %></dd>
                         
@@ -92,15 +92,6 @@
                         
                         <dt><%= data.D("loop-savings") %></dt>
                         <dd>$<%= data.util.formatNumber(data.loop.tax2014 - data.loop.loop2014, true) %></dd>
-                    </dl>
-                    
-                    <%= data.D("loop-pending-legislation") %>
-                    
-                    <dl class="dl-horizontal">
-                    <% var i; for(i = 0; i < data.incomeRequirements.length; i++) { %>
-                        <dt><%= data.D("num-person", i + 1) %></dt>
-                        <dd>$<%= data.util.formatNumber(data.incomeRequirements[i]) %></dd>
-                    <% } %>
                     </dl>
                 </div>
                 

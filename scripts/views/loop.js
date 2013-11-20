@@ -52,7 +52,7 @@ define([
                     ,income: parseInt(e.currentTarget.income.value, 10)
                 };
             // Income requirements not required until legislation passes
-            if(data.taxstatus === "yes" && data.ownocc === "yes" && data.count > 0/* && this.checkIncomeRequirements(data.count, data.income)*/) {
+            if(data.taxstatus === "yes" && data.ownocc === "yes" && data.count > 0 && this.checkIncomeRequirements(data.count, data.income)) {
                 this.$(".eligibility-answer.alert-error").hide();
                 this.$(".eligibility-answer.alert-success").show();
             } else {
