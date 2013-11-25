@@ -10,5 +10,5 @@
     $<%= data.util.formatNumber(data.searchResultsRow.sales_information.sales_price || 0) %>
 </td>
 <td class="hidden-phone">
-    $<%= data.util.formatNumber(data.searchResultsRow.valuation_history[0].market_value || 0) %>
+    <% if(data.searchResultsRow.valuation_history.length) { %>$<%= data.util.formatNumber(data.searchResultsRow.valuation_history[0].market_value || 0) %><% } %>
 </td>

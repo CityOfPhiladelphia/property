@@ -46,6 +46,9 @@ define([
             var i;
             for(i in response.data.properties) {
                 response.data.properties[i].sales_information.sales_date = parseInt(response.data.properties[i].sales_information.sales_date.replace(/[^-\d]/g, ""), 0);
+                
+                // Temporary API bug fix - if valuation_history is empty, API doesn't show empty array
+                if(response.data.properties[i].valuation_history === undefined) response.data.properties[i].valuation_history = [];
             }
             
             return response.data.properties;

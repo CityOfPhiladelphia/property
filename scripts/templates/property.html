@@ -127,7 +127,7 @@
                     </tbody>
                 </table>
                 <% } else { %>
-                    <%= data.D("proposed-not-available") %>
+                    <%= data.D("proposed-not-available", data.property.valuation_history.length ? parseInt(data.property.valuation_history[0].certification_year, 10) + 1 : "") %>
                 <% } %>
             </div>
         </div>

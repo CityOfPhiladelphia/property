@@ -66,7 +66,7 @@ define({
     
     // Valuations
     ,"proposed-valuation": "Proposed Valuation"
-    ,"proposed-not-available": "Proposed values not available yet"
+    ,"proposed-not-available": "{0} Proposed values not available yet"
     ,"certified-history": "Certified Valuation History"
     ,"year": "Year"
     ,"market-value": "Market Value"
