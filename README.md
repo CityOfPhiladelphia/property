@@ -1,4 +1,4 @@
-# Philadelphia Property Search Application
+# Philadelphia Property Search App
 You can use this application to search and compare property data in the City of Philadelphia
 
 ## Technology
