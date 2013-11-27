@@ -34,31 +34,31 @@ define([
             switch(method) {
                 case "address":
                     var addressNode = e.currentTarget.address
-                        ,address = this.sanitize(addressNode.value)
+                        ,address = addressNode.value
                         ,unit = e.currentTarget.unit.value;
                     if( ! address) return $(addressNode).focus();
                     Backbone.history.navigate("/address/" + address + (unit ? "/" + unit : ""), {trigger: true});
                     break;
                 case "account":
                     var accountNode = e.currentTarget.account
-                        ,account = this.sanitize(accountNode.value, "number");
+                        ,account = accountNode.value;
                     if( ! account) return $(accountNode).focus();
                     Backbone.history.navigate("/account/" + account, {trigger: true});
                     break;
                 case "block":
                     var hundredNode = e.currentTarget.hundred
-                        ,hundred = this.sanitize(hundredNode.value, "number")
+                        ,hundred = hundredNode.value
                         ,streetNode = e.currentTarget.street
-                        ,street = this.sanitize(streetNode.value);
+                        ,street = streetNode.value;
                     if( ! hundred) return $(hundredNode).focus();
                     if( ! street) return $(streetNode).focus();
                     Backbone.history.navigate("/block/" + hundred + "/" + street, {trigger: true}); // Combine to one field as per API spec
                     break;
                 case "intersection":
                     var street1Node = e.currentTarget.street1
-                        ,street1 = this.sanitize(street1Node.value)
+                        ,street1 = street1Node.value
                         ,street2Node = e.currentTarget.street2
-                        ,street2 = this.sanitize(street2Node.value);
+                        ,street2 = street2Node.value;
                     if( ! street1) return $(street1Node).focus();
                     if( ! street2) return $(street2Node).focus();
                     Backbone.history.navigate("/intersection/" + street1 + "/" + street2, {trigger: true}); // Combine to one field as per API spec
