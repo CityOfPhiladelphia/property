@@ -101,6 +101,7 @@ define({
 	"for-best-results": "要獲得更佳的搜尋結果，請輸入您的物業的帳戶號碼。",
 	"click-submit-inquiry": "按此提交查詢",
 	"error-account-fail": "於資料庫尋找物業時出錯。請再試一次。",
+	"error-loop-fail": "於資料庫尋找物業時出錯。請再試一次。",
 	"error-address-fail": "核實地址時出錯。請再試一次。",
 	"error-default": "錯誤。請再試一次。",
 	"field-required": "此欄為必填。"

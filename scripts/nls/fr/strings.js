@@ -101,6 +101,7 @@ define({
 	"for-best-results": "Pour les meilleurs résultats, saisissez le numéro de compte de votre bien immobilier.",
 	"click-submit-inquiry": "Cliquez ici pour soumettre une demande",
 	"error-account-fail": "Une erreur est survenue pendant la recherche du bien dans la base de données. Veuillez essayer de nouveau.",
+	"error-loop-fail": "Une erreur est survenue pendant la recherche du bien dans la base de données. Veuillez essayer de nouveau.",
 	"error-address-fail": "Une erreur est survenue pendant la vérification de l'adresse. Veuillez essayer de nouveau.",
 	"error-default": "Une erreur est survenue. Veuillez essayer de nouveau.",
 	"field-required": "Ce champ est obligatoire."

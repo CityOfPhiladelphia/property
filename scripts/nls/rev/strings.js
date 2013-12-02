@@ -93,6 +93,7 @@ define({
     "for-best-results": ".ytreporp ruoy fo rebmun tnuocca eht gniretne yrt ,stluser tseb roF",
     "click-submit-inquiry": "yriuqni na timbus ot ereh kcilC",
     "error-account-fail": ".niaga yrt esaelP .esabatad eht ni ytreporp eht gnidnif elihw derrucco rorre nA",
+    "error-loop-fail": ".niaga yrt esaelP .esabatad eht ni ytreporp eht gnidnif elihw derrucco rorre nA",
     "error-address-fail": ".niaga yrt esaelP .sserdda eht gniyfirev elihw derrucco rorre nA",
     "error-default": ".niaga yrt esaelP .derrucco rorre nA",
     "field-required": ".deriuqer si dleif sihT"

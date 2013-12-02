@@ -130,6 +130,7 @@ define({
     
     // Errors
     ,"error-account-fail": "An error occurred while finding the property in the database. Please try again."
+    ,"error-loop-fail": "An error occurred while finding the property in the LOOP database. Please try again."
     ,"error-address-fail": "An error occurred while verifying the address. Please try again."
     ,"error-default": "An error occurred. Please try again."
     ,"field-required": "This field is required." // Refers to a field on a web form that's required to be filled out

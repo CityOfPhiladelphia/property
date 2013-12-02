@@ -101,6 +101,7 @@ define({
 	"for-best-results": "Để có kết quả tốt nhất, hãy thử nhập số tài khoản của tài sản quý vị.",
 	"click-submit-inquiry": "Nhấp vào đây để gửi yêu cầu",
 	"error-account-fail": "Xảy ra lỗi khi tìm kiếm tài sản trong cơ sở dữ liệu. Vui lòng thử lại.",
+	"error-loop-fail": "Xảy ra lỗi khi tìm kiếm tài sản trong cơ sở dữ liệu. Vui lòng thử lại.",
 	"error-address-fail": "Xảy ra lỗi khi xác minh địa chỉ. Vui lòng thử lại.",
 	"error-default": "Đã xảy ra lỗi. Vui lòng thử lại.",
 	"field-required": "Trường này là bắt buộc."
