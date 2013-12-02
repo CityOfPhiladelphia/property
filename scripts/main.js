@@ -70,7 +70,11 @@ window.requirejs = window.requirejs || {};
              */
             window.DEBUG = false; // Global
             _.templateSettings.variable = "data"; // Namespace for template data
-            $.ajaxSetup({cache: true, timeout: 15000}); // Cache ajax requests
+            $.ajaxSetup({
+                cache: true // Cache ajax requests
+                ,timeout: 15000 // Set timeout
+                ,beforeSend: function(xhr, settings) { xhr.url = settings.url; } // Store URL in XHR object
+            });
             
             /**
              * Add dictionary helper

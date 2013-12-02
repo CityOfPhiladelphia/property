@@ -11,7 +11,7 @@ module.exports = function (grunt) {
           optimize: 'uglify',
           //findNestedDependencies: true,
           //generateSourceMaps: true,
-          //preserveLicenseComments: false,
+          preserveLicenseComments: false,
           include: ['i18n'],
           paths: {
             'jquery': '//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min',

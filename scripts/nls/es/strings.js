@@ -101,6 +101,7 @@ define({
 	"for-best-results": "Para obtener los mejores resultados, intente escribir el número de cuenta de su propiedad.",
 	"click-submit-inquiry": "Haga clic aquí para enviar una consulta",
 	"error-account-fail": "Se produjo un error mientras se buscaba la propiedad en la base de datos. Intente de nuevo.",
+	"error-loop-fail": "Se produjo un error mientras se buscaba la propiedad en la base de datos de LOOP. Intente de nuevo.",
 	"error-address-fail": "Se produjo un error mientras se verificaba la dirección. Intente de nuevo.",
 	"error-default": "Se produjo un error. Intente de nuevo.",
 	"field-required": "Este campo es obligatorio."

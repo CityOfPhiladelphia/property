@@ -110,7 +110,12 @@ define([
                 }
                 // Otherwise, something went wrong; go to error page
                 else {
-                    self.error(xhr, "error-account-fail");
+                    // If the XHR that failed is the LOOP XHR, show the LOOP error
+                    if(xhr.url && xhr.url === loop.url()) {
+                        self.error(xhr, "error-loop-fail");
+                    } else {
+                        self.error(xhr, "error-account-fail");
+                    }
                 }
             });
         }
