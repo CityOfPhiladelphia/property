@@ -80,7 +80,7 @@ define({
     ,"loop-full-name": "Longterm Owner Occupants Program (LOOP)"
     ,"loop-property-not-eligible": "This property is not eligible for the Longtime Owner Occupants Program. For information about other tax relief programs, visit {0}www.phila.gov/revenue{1}."
     ,"loop-not-eligible": "You do not appear eligible for LOOP, but you may be eligible for other programs. For information about tax relief programs, visit {0}www.phila.gov/revenue{1}."
-    ,"loop-eligible": "You may be eligible for LOOP, but you must apply by January 15, 2014. Use the application mailed to you. For more information visit {0}www.phila.gov/loop{1} or call 215-686-9200."
+    ,"loop-eligible": "You may be eligible for LOOP, but you must apply by February 17, 2014. Use the application mailed to you. For more information visit {0}www.phila.gov/loop{1} or call 215-686-9200."
     ,"loop-instructions": "Certain longtime homeowners whose property values have increased dramatically, and who meet other requirements, are eligible for relief from the City of Philadelphia against significant increases in their property tax bills.  Use this form to check if you are eligible."
     ,"loop-q1": "1. Is at least one of the following true? Your real estate taxes are paid in full, you are up-to-date on a payment plan, or you have filed an application for a payment plan with the Department of Revenue."
     ,"loop-q2": "2. Have you continuously owned and occupied the property as your primary residence and domicile since at least July 1, 2003?"
