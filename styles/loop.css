@@ -1,9 +1,0 @@
-.eligibility-answer { display: none; }
-label.error {
-    display: none;
-    font-weight: bold;
-    color: red;
-    padding: 2px 8px;
-    margin-top: 2px;
-}
-.eligibility-answer dt { width: 225px; text-align: left; }
