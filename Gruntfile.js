@@ -5,9 +5,9 @@ module.exports = function (grunt) {
       compile: {
         options: {
           name: 'main',
-          baseUrl: './scripts',
-          mainConfigFile: './scripts/main.js',
-          out: './build/scripts/main.js',
+          baseUrl: './app/scripts',
+          mainConfigFile: './app/scripts/main.js',
+          out: './app/build/scripts/main.js',
           optimize: 'uglify',
           //findNestedDependencies: true,
           //generateSourceMaps: true,
@@ -25,38 +25,38 @@ module.exports = function (grunt) {
     cssmin: {
       minify: {
         expand: true,
-        src: ['styles/styles.css', 'styles/loop.css', 'styles/lib/widget.css', 'styles/lib/bootstrap-philagov/bootstrap-philagov.css'],
-        dest: 'temp/styles/',
+        src: ['app/styles/styles.css', 'app/styles/loop.css', 'app/styles/lib/widget.css', 'app/styles/lib/bootstrap-philagov/bootstrap-philagov.css'],
+        dest: 'app/temp/styles/',
         ext: '.min.css'
       },
       combine: {
         files: {
-          'build/styles/opa.min.css': [
-            'temp/styles/styles/lib/bootstrap-philagov/bootstrap-philagov.min.css',
-            'temp/styles/styles/lib/widget.min.css',
-            'temp/styles/styles/styles.min.css',
-            'temp/styles/styles/loop.min.css'
+          'app/build/styles/opa.min.css': [
+            'app/temp/styles/app/styles/lib/bootstrap-philagov/bootstrap-philagov.min.css',
+            'app/temp/styles/app/styles/lib/widget.min.css',
+            'app/temp/styles/app/styles/styles.min.css',
+            'app/temp/styles/app/styles/loop.min.css'
           ]
         }
       }
     },
     clean: {
-      build: ['build/**/*', '!build/.git', '!build/CNAME'],
-      temp: ['temp/']
+      build: ['app/build/**/*', '!app/build/.git', '!app/build/CNAME'],
+      temp: ['app/temp/']
     },
     copy: {
       main: {
         files: [
-          {expand: true, src: 'images/*', dest: 'build/'},
-          {expand: true, src: 'scripts/lib/**', dest: 'build/scripts/lib/', flatten: true, filter: 'isFile'},
-          {src: 'scripts/nls/**', dest: 'build/'}
+          {expand: true, src: 'app/images/*', dest: 'app/build/images/', flatten: true},
+          {expand: true, src: 'app/scripts/lib/**', dest: 'app/build/scripts/lib/', flatten: true, filter: 'isFile'},
+          {cwd: 'app/scripts/nls/', src: ['**'], dest: 'app/build/scripts/nls/', expand: true}
         ]
       }
     },
     processhtml: {
       dist: {
         files: {
-          'temp/index.html': ['index.html']
+          'app/temp/index.html': ['app/index.html']
         }
       }
     },
@@ -67,7 +67,7 @@ module.exports = function (grunt) {
           collapseWhitespace: true
         },
         files: {
-          'build/index.html': 'temp/index.html'
+          'app/build/index.html': 'app/temp/index.html'
         }
       }
     }
