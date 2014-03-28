@@ -1,0 +1,179 @@
+<h1>
+    <%= data.property.full_address %>
+    <% if($.trim(data.property.unit)) { %>
+        <span class="unit"><%= data.D("unit-colon") %> <%= data.property.unit.replace(/^0+/, "") %></span>
+    <% } %>
+    <small><%= data.D("account-no") %> <%= data.property.account_number %></small>
+</h1>
+<div>
+    <ul class="nav nav-tabs">
+        <li class="active"><a href="#account/<%= data.property.account_number %>"><%= data.D("assessment") %></a></li>
+        <li><a href="#account/<%= data.property.account_number %>/loop"><%= data.D("tax-loop") %></a></li>
+    </ul>
+</div>
+<div class="row">
+    <div class="span6">
+        <div class="widget">
+            <div class="widget-header">
+                <i class="icon-book"></i>
+                <h3><%= data.D("account-info") %></h3>
+            </div>
+            <div class="widget-content">
+                <div class="row">
+                    <div class="span3">
+                        <ul class="nav nav-list">
+                            <li class="nav-header"><%= data.D("owners") %></li>
+                            <li>
+                                <% _.each(data.property.ownership.owners, function(owner) { %>
+                                    <%= owner %><br>
+                                <% }); %>
+                            </li>
+                            <li class="nav-header"><%= data.D("mailing-address") %></li>
+                            <li>
+                                <% if(data.property.ownership.liaison) { %>
+                                    <%= data.property.ownership.liaison %><br>
+                                <% } %>
+                                <% var addr = data.property.ownership.mailing_address || {} %>
+                                <address><%= [addr.street, [addr.city, addr.state].join(" "), addr.zip].join("<br>") %></address>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="span2">
+                        <ul class="nav nav-list">
+                            <li class="nav-header"><%= data.D("property-unit") %></li>
+                            <li><%= data.property.unit ? data.property.unit.replace(/^0+/, "") : "None" %></li>
+                            <li class="nav-header"><%= data.D("property-zip") %></li>
+                            <li><%= data.property.zip %>
+                            <li class="nav-header"><%= data.D("sale-date") %></li>
+                            <li><%= data.util.friendlyDate(data.property.sales_information.sales_date) %></li>
+                            <li class="nav-header"><%= data.D("sale-price") %></li>
+                            <li>$<%= data.util.formatNumber(data.property.sales_information.sales_price || 0) %></li>
+                            <li class="nav-header"><%= data.D("homestead") %></li>
+                            <li>$<%= data.property.characteristics.homestead ? data.util.formatNumber(data.property.characteristics.homestead) : "0" %></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="span6">
+        <div class="widget">
+            <div class="widget-header">
+                <i class="icon-home"></i>
+                <h3><%= data.D("property-chars") %></h3>
+            </div>
+            <div class="widget-content">
+                <div class="row">
+                    <div class="span3">
+                        <ul class="nav nav-list">
+                            <li class="nav-header"><%= data.D("land-area") %></li>
+                            <li><%= data.D("num-sqft", data.util.formatNumber(data.property.characteristics.land_area || 0)) %></li>
+                            <li class="nav-header"><%= data.D("improvement-area") %></li>
+                            <li><%= data.D("num-sqft", data.util.formatNumber(data.property.characteristics.improvement_area || 0)) %></li>
+                            <li class="nav-header"><%= data.D("improvement-desc") %></li>
+                            <li><%= data.property.characteristics.description %></li>
+                        </ul>
+                    </div>
+                    <div class="span2">
+                        <ul class="nav nav-list">
+                            <li class="nav-header"><%= data.D("beginning-point") %></li>
+                            <li><%= data.property.characteristics.beginning_point %></li>
+                            <li class="nav-header"><%= data.D("ext-condition") %></li>
+                            <li><%= data.D("ext_cond_" + data.property.characteristics.exterior_condition) %></li>
+                            <li class="nav-header"><%= data.D("zoning") %></li>
+                            <li>
+                                <%= data.property.characteristics.zoning %>
+                                <%= data.property.characteristics.zoning_description %>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<% var proposed_available = data.property.proposed_valuation !== undefined &&  ! _.isEmpty(data.property.proposed_valuation); %>
+<div class="row">
+    <div class="span12">
+        <div class="widget<% if(proposed_available) { %> widget-table<% } %>">
+            <div class="widget-header">
+                <i class="icon-th-large"></i>
+                <h3><%= data.D("proposed-valuation") %></h3>
+            </div>
+            <div class="widget-content<% if(proposed_available) { %> flipper<% } %>">
+                <% if(proposed_available) { %>
+                <table class="table table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <th><%= data.D("year") %></th>
+                            <th><%= data.D("market-value") %></th>
+                            <th><%= data.D("assessed-land-taxable") %></th>
+                            <th><%= data.D("assessed-imp-taxable") %></th>
+                            <th><%= data.D("assessed-land-exempt") %></th>
+                            <th><%= data.D("assessed-imp-exempt") %></th>
+                            <th><%= data.D("total-assessment") %></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><%= data.property.proposed_valuation.certification_year %></td>
+                            <td>$<%= data.util.formatNumber(data.property.proposed_valuation.market_value) %></td>
+                            <td>$<%= data.util.formatNumber(data.property.proposed_valuation.land_taxable) %></td>
+                            <td>$<%= data.util.formatNumber(data.property.proposed_valuation.improvement_taxable) %></td>
+                            <td>$<%= data.util.formatNumber(data.property.proposed_valuation.land_exempt) %></td>
+                            <td>$<%= data.util.formatNumber(data.property.proposed_valuation.improvement_exempt) %></td>
+                            <td>$<%= data.util.formatNumber(data.property.proposed_valuation.land_taxable + data.property.proposed_valuation.improvement_taxable + data.property.proposed_valuation.land_exempt + data.property.proposed_valuation.improvement_exempt) %></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <% } else { %>
+                    <%= data.D("proposed-not-available", data.property.valuation_history.length ? parseInt(data.property.valuation_history[0].certification_year, 10) + 1 : "") %>
+                <% } %>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="span12">
+        <div class="widget widget-table">
+            <div class="widget-header">
+                <i class="icon-th-list"></i>
+                <h3><%= data.D("certified-history") %></h3>
+            </div>
+            <div class="widget-content flipper">
+                <table class="table table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <th><%= data.D("year") %></th>
+                            <th><%= data.D("market-value") %></th>
+                            <th><%= data.D("assessed-land-taxable") %></th>
+                            <th><%= data.D("assessed-imp-taxable") %></th>
+                            <th><%= data.D("assessed-land-exempt") %></th>
+                            <th><%= data.D("assessed-imp-exempt") %></th>
+                            <th><%= data.D("total-assessment") %></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                <% _.each(data.property.valuation_history, function(valuation) { %>
+                        <tr>
+                            <td><%= valuation.certification_year %></td>
+                            <td>$<%= data.util.formatNumber(valuation.market_value) %></td>
+                            <td>$<%= data.util.formatNumber(valuation.land_taxable) %></td>
+                            <td>$<%= data.util.formatNumber(valuation.improvement_taxable) %></td>
+                            <td>$<%= data.util.formatNumber(valuation.land_exempt) %></td>
+                            <td>$<%= data.util.formatNumber(valuation.improvement_exempt) %></td>
+                            <td>$<%= data.util.formatNumber(valuation.land_taxable + valuation.improvement_taxable + valuation.land_exempt + valuation.improvement_exempt) %></td>
+                        </tr>
+                <% }) %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<%= data.D("disc-revenue-taxes", "<a href=\"http://www.phila.gov/revenue\" target=\"_blank\">", "</a>") %>
+<br><br>
+<a href="#" class="btn btn-large"><i class="icon-chevron-left"></i> <%= data.D("new-search") %></a>
+<a href="http://www.phila.gov/revenue/RealEstateTax/Default.aspx?txtBRTNo=<%= data.property.account_number %>" class="btn btn-large btn-info" target="_blank"><%= data.D("view-tax-balances") %></a>
+<a href="http://opa.phila.gov/opa.apps/Help/CitizenMain.aspx?sch=Ctrl2&s=1&url=search&id=<%= data.property.property_id %>" class="btn btn-large btn-warning"><%= data.D("submit-inquiry") %></a>

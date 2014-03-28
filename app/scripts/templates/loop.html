@@ -1,0 +1,108 @@
+<h1>
+    <%= data.property.full_address %>
+    <% if($.trim(data.property.unit)) { %>
+        <span class="unit"><%= data.D("unit-colon") %> <%= data.property.unit.replace(/^0+/, "") %></span>
+    <% } %>
+    <small><%= data.D("account-no") %> <%= data.property.account_number %></small>
+</h1>
+<div>
+    <ul class="nav nav-tabs">
+        <li><a href="#account/<%= data.property.account_number %>"><%= data.D("assessment") %></a></li>
+        <li class="active"><a href="#account/<%= data.property.account_number %>/loop"><%= data.D("tax-loop") %></a></li>
+    </ul>
+</div>
+
+<div class="row">
+    <div class="span12">
+        <div class="widget">
+            <div class="widget-header">
+                <i class="icon-home"></i>
+                <h3><%= data.D("loop-full-name") %></h3>
+            </div>
+            <div class="widget-content">
+            <% if(data.loop.parcel === undefined) { %>
+            
+                <%= data.D("loop-property-not-eligible", "<a href=\"http://www.phila.gov/revenue\">", "</a>") %>
+                
+            <% } else { %>
+            
+                <p>
+                    <%= data.D("loop-instructions") %>
+                </p>
+
+                <form id="eligibility">
+                    <div class="control-group">
+                        <%= data.D("loop-q1") %>
+                        <label class="radio">
+                            <input type="radio" name="taxstatus" value="yes" required title="<%= data.D("field-required") %>">
+                            <%= data.D("yes") %>
+                        </label>
+                        <label class="radio">
+                            <input type="radio" name="taxstatus" value="no">
+                            <%= data.D("no") %>
+                        </label>
+                        <label for="taxstatus" class="error"></label>
+                    </div>
+                    <div class="control-group">
+                        <%= data.D("loop-q2") %>
+                        <label class="radio">
+                            <input type="radio" name="ownocc" value="yes" required title="<%= data.D("field-required") %>">
+                            <%= data.D("yes") %>
+                        </label>
+                        <label class="radio">
+                            <input type="radio" name="ownocc" value="no">
+                            <%= data.D("no") %>
+                        </label>
+                        <label for="ownocc" class="error"></label>
+                    </div>
+                    
+                    <div class="control-group">
+                        <label for="count"><%= data.D("loop-q3") %></label>
+                        <select name="count" id="count" required title="<%= data.D("field-required") %>">
+                            <option value=""><%= data.D("select") %></option>
+                        <% var i; for(i = 0; i <= 8; i++) { %>
+                            <option value="<%= i %>"><%= i %></option>
+                        <% } %>
+                        </select>
+                        <label for="count" class="error"></label>
+                    </div>
+                    
+                    <div class="control-group">
+                        <label for="income"><%= data.D("loop-q4") %></label>
+                        <div class="input-prepend input-append">
+                            <span class="add-on">$</span>
+                            <input type="number" step="5000" class="span2" name="income" id="income" data-inputmask="'mask': '9', 'repeat': '*'" required title="<%= data.D("field-required") %>">
+                            <span class="add-on">.00</span>
+                        </div>
+                        <label for="income" class="error"></label>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary btn-large"><%= data.D("check-eligibility") %></button>
+                </form>
+                    
+                <div class="alert alert-success eligibility-answer">
+                    <%= data.D("loop-eligible", "<a href=\"http://www.phila.gov/loop\">", "</a>") %><br><br>
+                    
+                    <dl>
+                        <dt><%= data.D("bill-without-loop") %></dt>
+                        <dd>$<%= data.util.formatNumber(data.loop.tax2014, true) %></dd>
+                        
+                        <dt><%= data.D("bill-with-loop") %></dt>
+                        <dd>$<%= data.util.formatNumber(data.loop.loop2014, true) %></dd>
+                        
+                        <dt><%= data.D("loop-savings") %></dt>
+                        <dd>$<%= data.util.formatNumber(data.loop.tax2014 - data.loop.loop2014, true) %></dd>
+                    </dl>
+                </div>
+                
+                <div class="alert alert-error eligibility-answer">
+                    <%= data.D("loop-not-eligible", "<a href=\"http://www.phila.gov/revenue\">", "</a>") %>
+                </div>
+
+            <% } %>
+            </div>
+        </div>
+    </div>
+</div>
+
+<a href="#" class="btn btn-large"><i class="icon-chevron-left"></i> <%= data.D("new-search") %></a>
