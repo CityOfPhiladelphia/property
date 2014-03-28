@@ -7,7 +7,7 @@ define([
 
     var Property = Backbone.Model.extend({
         settings: {
-            apiHost: "http://api.phila.gov/OPA/v1.0/"
+            apiHost: "http://services.phila.gov/OPA/v1.0/"
         }
         ,initialize: function(options) {
             this.input = options.input || "";
