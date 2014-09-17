@@ -100,7 +100,7 @@ define({
     ,"ext_cond_4": "Average"
     ,"ext_cond_5": "Below Average"
     ,"ext_cond_6": "Vacant"
-    ,"ext_cond_7": "Sealed / Structurally Compliant"
+    ,"ext_cond_7": "Sealed / Structurally Compromised"
     
     // Disclaimers
     ,"disc-terms": "By using this application you agree to its {0}Terms of Use{1}."
