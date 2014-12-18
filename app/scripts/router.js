@@ -58,7 +58,7 @@ define([
                 var homeView = new HomeView();
                 this.showView(homeView);
             } else {
-                Backbone.history.navigate("disclaimer", {trigger: true});
+                Backbone.history.navigate("disclaimer", {trigger: true, replace: true});
             }
         }
         /**
