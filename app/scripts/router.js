@@ -18,7 +18,7 @@ define([
     ,"views/error"
 ], function($, _, Backbone, util, Property, Loop, SearchResults, HomeView, DisclaimerView, PropertyView, LoopView, SearchResultsView, SearchResultsRowView, ErrorView) {
     "use strict";
-    
+
     var AppRouter = Backbone.Router.extend({
         routes: {
             "": "home"
@@ -71,7 +71,7 @@ define([
                 ,view
                 ,input = {account: decodeURIComponent(account)};
             path = path ? path.toLowerCase() : "";
-            
+
             // If we've already fetched this model, reuse it rather than fetching again
             var property;
             if(this.cache.id === input.account) {
@@ -82,17 +82,17 @@ define([
                 this.cache.id = input.account;
                 this.cache.model = property;
             }
-            
+
             // If path specified
             if(path === "loop") {
                 var loop = new Loop({input: input});
                 promises.push(loop.fetch());
-                
+
                 view = new LoopView({model: property, loop: loop});
             } else {
                 view = new PropertyView({model: property});
             }
-            
+
             util.loading(true);
             $.when.apply($, promises)
             .done(function() {
@@ -101,7 +101,7 @@ define([
             })
             .fail(function(xhr) {
                 util.loading(false);
-                
+
                 // If response is 400-499, it means the account couldn't be found; go back to search page
                 // TODO: Ensure this works with JSONP
                 if(xhr.status !== undefined && xhr.status >= 400 && xhr.status < 500) {
@@ -127,15 +127,15 @@ define([
             var self = this
                 ,promises = []
                 ,input = {address: decodeURIComponent(address), unit: unit ? decodeURIComponent(unit) : null};
-            
+
             var searchResults = new SearchResults(null, {input: input, method: "address"});
             promises.push(searchResults.fetch());
-            
+
             util.loading(true);
             $.when.apply($, promises)
             .done(function() {
                 util.loading(false);
-                
+
                 // If no results found, go back to search page
                 if( ! searchResults.length) {
                     var homeView = new HomeView({method: "address", input: input, noresults: true});
@@ -163,15 +163,15 @@ define([
             var self = this
                 ,promises = []
                 ,input = {hundred: decodeURIComponent(hundred), street: decodeURIComponent(street)};
-                
+
             var searchResults = new SearchResults(null, {input: input, method: "block"});
             promises.push(searchResults.fetch());
-            
+
             util.loading(true);
             $.when.apply($, promises)
             .done(function() {
                 util.loading(false);
-                
+
                 // If no results found, go back to search page
                 if( ! searchResults.length) {
                     var homeView = new HomeView({method: "block", input: input, noresults: true});
@@ -195,15 +195,15 @@ define([
             var self = this
                 ,promises = []
                 ,input = {street1: decodeURIComponent(street1), street2: decodeURIComponent(street2)};
-                
+
             var searchResults = new SearchResults(null, {input: input, method: "intersection"});
             promises.push(searchResults.fetch());
-            
+
             util.loading(true);
             $.when.apply($, promises)
             .done(function() {
                 util.loading(false);
-                
+
                 // If no results found, go back to search page
                 if( ! searchResults.length) {
                     var homeView = new HomeView({method: "intersection", input: input, noresults: true});
@@ -248,6 +248,6 @@ define([
             if(window.DEBUG) console.log("Google Analytics Error", error, Backbone.history.fragment);
         }
     });
-    
+
     return AppRouter;
 });
