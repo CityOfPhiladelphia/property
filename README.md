@@ -14,12 +14,11 @@ We'd welcome your suggestions and feedback. Please submit issues and pull reques
 
 First, make sure you have [node.js](http://nodejs.org/) installed.
 
-1. Clone the repository by using `git clone git@github.com:CityOfPhiladelphia/property.git`
+1. Clone the repository and its submodule by using `git clone --recursive git@github.com:CityOfPhiladelphia/property.git`
 2. Navigate inside the newly created directory by using `cd property`
 3. Install server dependencies by using `npm install` (will install the packages in package.json)
-4. Install the [bootstrap-philagov](https://github.com/CityOfPhiladelphia/bootstrap-philagov) submodule with `git submodule update --init`
-5. Install [bower](http://bower.io) package manager globally by using `sudo npm install -g bower` (it may prompt you to re-enter your password)
-6. Install client dependencies by using `bower install` (will install the packages in bower.json)
+4. Install [bower](http://bower.io) package manager globally by using `sudo npm install -g bower` (it may prompt you to re-enter your password)
+5. Install client dependencies by using `bower install` (will install the packages in bower.json)
 
 ## Running Locally
 
