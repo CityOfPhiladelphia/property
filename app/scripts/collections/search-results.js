@@ -7,7 +7,7 @@ define([
 
     var SearchResults = Backbone.Collection.extend({
         settings: {
-            apiHost: "http://api.phila.gov/OPA/v1.0/"
+            apiHost: "http://api.phila.gov/OPA/v1.1/"
             ,skip: 0
             ,limit: 30
         }
