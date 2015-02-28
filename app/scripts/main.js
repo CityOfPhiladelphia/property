@@ -12,18 +12,9 @@ window.requirejs = window.requirejs || {};
                 "//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min"
                 ,"lib/jquery.min"
             ]
-            ,"underscore": [
-                "//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore-min"
-                ,"lib/underscore-min"
-            ]
-            ,"backbone": [
-                "//cdnjs.cloudflare.com/ajax/libs/backbone.js/1.1.0/backbone-min"
-                ,"lib/backbone-min"
-            ]
-            ,"jquery-bootstrap": [
-                "//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/js/bootstrap.min"
-                ,"lib/bootstrap.min"
-            ]
+            ,"underscore": "lib/underscore-min"
+            ,"backbone": "lib/backbone-min"
+            ,"jquery-bootstrap": "lib/bootstrap.min"
             ,"jquery-cookie": "lib/jquery.cookie"
             ,"jquery-serializeObject": "lib/jquery.serializeObject"
             ,"jquery-inputmask": "lib/jquery.inputmask"
