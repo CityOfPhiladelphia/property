@@ -89,6 +89,7 @@ define({
     "misc-disc-title": "suoenallecsiM",
     "misc-disc": ".remialcsiD dna esU fo smreT eseht fo noisivorp yna fo tnetni eht ebircsed ro dnetxe ,timil ,enifed yaw on ni dna ylno ecneinevnoc rof era sgnidaeH .eciton tuohtiw dna emityna ta snoitidnoc dna smret gniogerof eht egnahc esiwrehto dna esiver ot thgir eht sevreser ytiC ehT .ainavlysnneP fo htlaewnommoC eht fo swal eht htiw ecnadrocca ni dediced dna deurtsnoc ,denrevog eb llahs meht rednu gnisira setupsid lla dna snoitidnoc dna smret gniogerof ehT",
     "disc-revenue-taxes": ".2446-686-512 llac ro sexat etatse laer fo gnitnuocca dna gnitcelloc ,gnillib eht gnidrager noitamrofni rof {0}etisbeW euneveR fo tnemtrapeD{1} eht tisiv esaelP  .sexat etatse laer gnitcelloc rof elbisnopser si euneveR fo tnemtrapeD ehT :etoN",
+    "disc-homestead": ".)POOL( margorP stnapuccO renwO emitgnoL eht ni dellorne era ro tnemetaba na evah ydaerla uoy fi noitpmexE daetsemoH eht rof elbigile ton era uoY .nmuloc 'tpmexE' eht ni dnuof eb nac tnuoma eht ,noitpmexE daetsemoH eht rof devorppa fI",
     "no-matches": ".{0} rof dnuof sehctam oN",
     "for-best-results": ".ytreporp ruoy fo rebmun tnuocca eht gniretne yrt ,stluser tseb roF",
     "click-submit-inquiry": "yriuqni na timbus ot ereh kcilC",

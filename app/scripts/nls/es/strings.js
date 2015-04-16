@@ -97,6 +97,7 @@ define({
 	"misc-disc-title": "Varios",
 	"misc-disc": "Los términos y condiciones anteriores y todas las disputas que surjan en virtud de ellos se regirán, interpretarán y resolverán de conformidad con las leyes del Estado de Pensilvania. La Ciudad se reserva el derecho de revisar y modificar de otro modo los términos y condiciones anteriores en cualquier momento y sin previo aviso. Los encabezados son solamente para conveniencia y no definen, limitan, amplían o describen de ninguna manera la intención de cualquier disposición de estos Términos de uso y Aviso legal.",
 	"disc-revenue-taxes": "Nota: El Departamento de Hacienda es responsable de la recaudación de impuestos de bienes inmuebles.  Visite el {0}sitio web del Departamento de Hacienda{1} para obtener información sobre la facturación, recaudación y contabilización de los impuestos de bienes inmuebles o llame al 215-686-6442.",
+	"disc-homestead": "Si es aprobado por la Exención Homestead, la cantidad se puede encontrar en la columna 'Exento'. Usted no es elegible para la Exención Homestead si ya tienes una reducción o está inscrito en el Programa El veterano Ocupantes Propietario (LOOP) .",
 	"no-matches": "No se han encontrado resultados para {0}.",
 	"for-best-results": "Para obtener los mejores resultados, intente escribir el número de cuenta de su propiedad.",
 	"click-submit-inquiry": "Haga clic aquí para enviar una consulta",

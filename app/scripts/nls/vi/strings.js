@@ -97,6 +97,7 @@ define({
 	"misc-disc-title": "Khác",
 	"misc-disc": "Các điều khoản và điều kiện nói trên cũng như mọi tranh chấp phát sinh từ đó sẽ được chi phối, giải thích và quyết định theo pháp luật của Khối Thịnh Vượng Pennsylvania. Thành pôố có quyền chỉnh sửa và thay đổi các điều khoản và điều kiện nói trên vào bất kỳ lúc nào và không cần thông báo trước. Các tiêu đề chỉ nhằm mục đích thuận tiện và không xác định, giới hạn, mở rộng hay miêu tả mục đích của bất kỳ quy định nào trong Điều Khoản Sử Dụng và Khước Từ này.",
 	"disc-revenue-taxes": "Lưu ý: Sở Thuế Vụ có trách nhiệm thu thuế bất động sản.  Vui lòng truy cập {0}Trang Web của Sở Thuế Vụ{1} để biết thông tin về việc xuất hoá đơn, thu tiền và hạch toán thuế bất động sản hoặc gọi đến số 215-686-6442.",
+	"disc-homestead": "Nếu được chấp thuận cho Exemption Homestead , số tiền có thể được tìm thấy trong các cột được miễn thuế . Bạn không đủ điều kiện cho Exemption Homestead nếu bạn đã có một giảm hoặc đang theo học trong Chương trình Người cư ngụ lâu năm chủ (LOOP).",
 	"no-matches": "Không tìm thấy kết quả cho {0}.",
 	"for-best-results": "Để có kết quả tốt nhất, hãy thử nhập số tài khoản của tài sản quý vị.",
 	"click-submit-inquiry": "Nhấp vào đây để gửi yêu cầu",

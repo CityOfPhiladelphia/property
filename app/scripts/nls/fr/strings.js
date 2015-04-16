@@ -97,6 +97,7 @@ define({
 	"misc-disc-title": "Divers",
 	"misc-disc": "Les modalités et conditions ci-dessus et tout conflit qui apparaît sous celles-ci sont régis, interprétés et décidés conformément aux lois du Commonwealth de Pennsylvanie. La Ville se réserve le droit de réviser et de modifier les modalités et conditions ci-dessus à tout moment et sans préavis. Les titres sont ajoutés pour des raisons de commodité uniquement, et ils ne définissent, ne limitent, n'élargissent ou ne décrivent nullement le sens de l'une quelconque des dispositions de ces Conditions d'utilisation et de cette Clause de non-responsabilité.",
 	"disc-revenue-taxes": "Note : Le Ministère du Revenu est chargé de récolter les taxes sur les biens immobiliers. Pour plus d'informations sur la facturation, le recouvrement et la comptabilité des taxes immobilières, veuillez visitez {0}Site du Ministère du Revenu{1} ou téléphoner au 215-686-6442.",
+	"disc-homestead": "Si elle est approuvée à l'exemption de Homestead, le montant peut être trouvé dans la colonne 'exonéré'. Vous n'êtes pas admissible à l'exemption de Homestead si vous avez déjà un abattement ou êtes inscrit dans le Programme de longue date occupants propriétaire (LOOP).",
 	"no-matches": "Aucune correspondance n'a été trouvée pour {0}",
 	"for-best-results": "Pour les meilleurs résultats, saisissez le numéro de compte de votre bien immobilier.",
 	"click-submit-inquiry": "Cliquez ici pour soumettre une demande",

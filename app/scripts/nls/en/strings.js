@@ -1,11 +1,11 @@
 define({
     // Meta
     "language": "en"
-    
+
     // Title
     ,"app-title": "Property Search"
     ,"app-subtitle": "You can use this application to search and compare property data in the City of Philadelphia"
-    
+
     // Tabs
     ,"address": "Address"
     ,"account": "Account"
@@ -18,7 +18,7 @@ define({
     ,"street": "Street"
     ,"street1": "Street 1"
     ,"street2": "Street 2"
-    
+
     // Buttons
     ,"search": "Search"
     ,"i-accept": "I Accept"
@@ -28,20 +28,20 @@ define({
     ,"view-tax-balances": "View Tax Balances"
     ,"submit-inquiry": "Submit an Inquiry"
     ,"check-eligibility": "Check Eligibility"
-    
+
     // Misc
     ,"ex": "ex."
     ,"loading": "Loading"
     ,"num-results-found": "{0} results found"
     ,"sale-details": "Sale Details"
     ,"select": "Select..."
-    
+
     // Page Titles
     ,"multiple-results": "Multiple Properties Found"
     ,"error": "Error"
     ,"assessment": "Assessment"
     ,"tax-loop": "Tax LOOP"
-    
+
     // Account Info
     ,"account-info": "Account Information"
     ,"owners": "Owner(s)"
@@ -53,7 +53,7 @@ define({
     ,"homestead": "Homestead"
     ,"yes": "Yes"
     ,"no": "No"
-    
+
     // Property Characteristics
     ,"property-chars": "Property Characteristics"
     ,"land-area": "Land Area"
@@ -63,7 +63,7 @@ define({
     ,"beginning-point": "Beginning Point"
     ,"ext-condition": "Exterior Condition"
     ,"zoning": "Zoning"
-    
+
     // Valuations
     ,"proposed-valuation": "Proposed Valuation"
     ,"proposed-not-available": "{0} Proposed values not available yet"
@@ -75,7 +75,7 @@ define({
     ,"assessed-land-exempt": "Assessed Land (Exempt)"
     ,"assessed-imp-exempt": "Assessed Improvement (Exempt)"
     ,"total-assessment": "Total Assessment"
-    
+
     // LOOP
     ,"loop-full-name": "Longterm Owner Occupants Program (LOOP)"
     ,"loop-property-not-eligible": "This property is not eligible for the Longtime Owner Occupants Program. For information about other tax relief programs, visit {0}www.phila.gov/revenue{1}."
@@ -91,7 +91,7 @@ define({
     ,"loop-savings": "Potential savings:"
     ,"loop-pending-legislation": "Pending the passage of legislation by the Commonwealth of Pennsylvania,  LOOP may be subject to income limits based upon household size, as follows:"
     ,"num-person": "{0} Person"
-    
+
     // Exterior Conditions
     ,"ext_cond_0": "Not Applicable"
     ,"ext_cond_1": "Other"
@@ -101,7 +101,7 @@ define({
     ,"ext_cond_5": "Below Average"
     ,"ext_cond_6": "Vacant"
     ,"ext_cond_7": "Sealed / Structurally Compromised"
-    
+
     // Disclaimers
     ,"disc-terms": "By using this application you agree to its {0}Terms of Use{1}."
     ,"tou-title": "Terms of Use"
@@ -120,14 +120,15 @@ define({
     ,"misc-disc-title": "Miscellaneous"
     ,"misc-disc": "The foregoing terms and conditions and all disputes arising under them shall be governed, construed and decided in accordance with the laws of the Commonwealth of Pennsylvania. The City reserves the right to revise and otherwise change the foregoing terms and conditions at anytime and without notice. Headings are for convenience only and in no way define, limit, extend or describe the intent of any provision of these Terms of Use and Disclaimer."
     ,"disc-revenue-taxes": "Note: The Department of Revenue is responsible for collecting real estate taxes.  Please visit the {0}Department of Revenue Website{1} for information regarding the billing, collecting and accounting of real estate taxes or call 215-686-6442."
-    
+    ,"disc-homestead": "* If approved for the Homestead Exemption, the amount is indicated in the 'Exempt' column. If you have an abatement or are enrolled in the Longtime Owner Occupants Program (LOOP), then you are ineligible to also have the Homestead Exemption."
+
     // Errors
     ,"no-matches": "No matches found for {0}."
     ,"for-best-results": "For best results, try entering the account number of your property."
-    
+
     // Links
     ,"click-submit-inquiry": "Click here to submit an inquiry"
-    
+
     // Errors
     ,"error-account-fail": "An error occurred while finding the property in the database. Please try again."
     ,"error-loop-fail": "An error occurred while finding the property in the LOOP database. Please try again."
