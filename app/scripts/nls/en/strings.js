@@ -120,7 +120,7 @@ define({
     ,"misc-disc-title": "Miscellaneous"
     ,"misc-disc": "The foregoing terms and conditions and all disputes arising under them shall be governed, construed and decided in accordance with the laws of the Commonwealth of Pennsylvania. The City reserves the right to revise and otherwise change the foregoing terms and conditions at anytime and without notice. Headings are for convenience only and in no way define, limit, extend or describe the intent of any provision of these Terms of Use and Disclaimer."
     ,"disc-revenue-taxes": "Note: The Department of Revenue is responsible for collecting real estate taxes.  Please visit the {0}Department of Revenue Website{1} for information regarding the billing, collecting and accounting of real estate taxes or call 215-686-6442."
-    ,"disc-homestead": "* If approved for the Homestead Exemption, the amount is indicated in the 'Exempt' column. If you have an abatement or are enrolled in the Longtime Owner Occupants Program (LOOP), then you are ineligible to also have the Homestead Exemption."
+    ,"disc-homestead": "If approved for the Homestead Exemption, the amount is indicated in the 'Exempt' column. If you have an abatement or are enrolled in the Longtime Owner Occupants Program (LOOP), then you are ineligible to also have the Homestead Exemption."
 
     // Errors
     ,"no-matches": "No matches found for {0}."
