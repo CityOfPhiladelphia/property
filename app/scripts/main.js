@@ -1,7 +1,7 @@
 window.requirejs = window.requirejs || {};
 (function(requirejs) {
     "use strict";
-    
+
     /**
      * Set up the third-party libraries
      */
@@ -35,7 +35,7 @@ window.requirejs = window.requirejs || {};
         }
         //,config: { i18n: { locale: "rev" } }
     });
-    
+
     /**
      * Set the language first so require.js knows which strings.js file to fetch
      */
@@ -50,12 +50,12 @@ window.requirejs = window.requirejs || {};
         //,"i18n"
     ], function($, _, Backbone, Router) {
         requirejs.config({config: { i18n: { locale: $.cookie("language") || "en" } }});
-    
+
         /**
          * Configure and initialize the application
          */
         require(["i18n!nls/strings"], function(strings) {
-    
+
             /**
              * Global configs
              */
@@ -66,7 +66,7 @@ window.requirejs = window.requirejs || {};
                 ,timeout: 15000 // Set timeout
                 ,beforeSend: function(xhr, settings) { xhr.url = settings.url; } // Store URL in XHR object
             });
-            
+
             /**
              * Add dictionary helper
              * sprintf style logic from http://stackoverflow.com/a/4673436/633406
@@ -75,12 +75,12 @@ window.requirejs = window.requirejs || {};
                 D: function(key) {
                     var args = [].slice.call(arguments,1)
                         ,string = strings[key] || key;
-                    return string.replace(/{(\d+)}/g, function(match, number) { 
+                    return string.replace(/{(\d+)}/g, function(match, number) {
                         return typeof args[number] != 'undefined' ? args[number] : match;
                     });
                 }
             });
-            
+
             /**
              * If no CORS support, use jsonp
              */
@@ -93,7 +93,7 @@ window.requirejs = window.requirejs || {};
                 }
                 return Backbone.$.ajax.apply(Backbone.$, arguments);
             };
-            
+
             /**
              * Initialize the application
              * TODO: Determine if it's necessary to wrap this in document.ready
@@ -104,5 +104,5 @@ window.requirejs = window.requirejs || {};
             });
         });
     });
-    
+
 })(window.requirejs);
