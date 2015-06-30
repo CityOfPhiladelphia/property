@@ -2,6 +2,12 @@ window.requirejs = window.requirejs || {};
 (function(requirejs) {
     "use strict";
 
+    // Special code to stop the app if it's the browser that the
+    // scraperbots are using. This var is set in GTM, globally.
+    if (window.userAgentMozilla36) {
+        return;
+    }
+
     /**
      * Set up the third-party libraries
      */
