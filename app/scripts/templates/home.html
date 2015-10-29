@@ -2,6 +2,9 @@
     <h1><%= data.D("app-title") %></h1>
     <h3><%= data.D("app-subtitle") %></h3>
 </div>
+<div class="alert alert-error text-center" role="alert">
+    <strong>We're making this site better. <a href="http://alpha.phila.gov/property" target="_blank">Preview the new version and tell us what you think.</a></strong>
+</div>
 <% if(data.noresults) { %>
 <div class="alert alert-error">
     <%= data.D("no-matches", "<code>" + _.compact(_.values(data.input)).join("</code> <code>") + "</code>") %>
