@@ -26,7 +26,6 @@ define([
             ,"address/:address(/:unit)": "address"
             ,"block/:hundred/:street": "block"
             ,"intersection/:street1/:street2": "intersection"
-            ,"comparable/:eqid/:bldgcd": "comparable"
             ,"disclaimer": "disclaimer"
             ,"*path": "home"
         }
@@ -54,6 +53,10 @@ define([
             this.logPageView();
         }
         ,home: function() {
+            // Alpha redirect
+            window.location.replace('https://alpha.phila.gov/property');
+            return;
+
             if($.cookie("accepted-disclaimer")) {
                 var homeView = new HomeView();
                 this.showView(homeView);
@@ -66,6 +69,10 @@ define([
          * Called when a user enters an Account # or when the address they enter finds one account # from ulrs311
          */
         ,account: function(account, path) {
+            // Alpha redirect
+            window.location.replace('https://alpha.phila.gov/property/?p=' + account);
+            return;
+
             var self = this
                 ,promises = []
                 ,view
@@ -124,6 +131,10 @@ define([
          * If 1 result, view it; If multiple results, show list
          */
         ,address: function(address, unit) {
+            // Alpha redirect
+            window.location.replace('https://alpha.phila.gov/property/?a=' + address + '&u=' + unit);
+            return;
+
             var self = this
                 ,promises = []
                 ,input = {address: decodeURIComponent(address), unit: unit ? decodeURIComponent(unit) : null};
@@ -160,6 +171,10 @@ define([
          * Find properties by block
          */
         ,block: function(hundred, street) {
+            // Alpha redirect
+            window.location.replace('https://alpha.phila.gov/property/?bn=' +  hundred + '&bs=' + street);
+            return;
+
             var self = this
                 ,promises = []
                 ,input = {hundred: decodeURIComponent(hundred), street: decodeURIComponent(street)};
@@ -192,6 +207,10 @@ define([
          * Find properties by intersection
          */
         ,intersection: function(street1, street2) {
+            // Alpha redirect
+            window.location.replace('https://alpha.phila.gov/property/?s1=' + street1 + '&s2=' + street2);
+            return;
+
             var self = this
                 ,promises = []
                 ,input = {street1: decodeURIComponent(street1), street2: decodeURIComponent(street2)};
@@ -232,6 +251,10 @@ define([
          * Disclaimer / Terms of Use page
          */
         ,disclaimer: function() {
+            // Alpha redirect
+            window.location.replace('https://alpha.phila.gov/property');
+            return;
+
             var disclaimerView = new DisclaimerView();
             this.showView(disclaimerView);
         }
