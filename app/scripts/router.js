@@ -70,7 +70,7 @@ define([
          */
         ,account: function(account, path) {
             // Alpha redirect
-            window.location.replace('https://alpha.phila.gov/property/?p=' + account);
+            window.location.replace('https://alpha.phila.gov/property/?p=' + (account || ''));
             return;
 
             var self = this
@@ -132,7 +132,7 @@ define([
          */
         ,address: function(address, unit) {
             // Alpha redirect
-            window.location.replace('https://alpha.phila.gov/property/?a=' + address + '&u=' + unit);
+            window.location.replace('https://alpha.phila.gov/property/?a=' + (address || '') + '&u=' + (unit || ''));
             return;
 
             var self = this
@@ -172,7 +172,7 @@ define([
          */
         ,block: function(hundred, street) {
             // Alpha redirect
-            window.location.replace('https://alpha.phila.gov/property/?bn=' +  hundred + '&bs=' + street);
+            window.location.replace('https://alpha.phila.gov/property/?bn=' +  (hundred || '') + '&bs=' + (street || ''));
             return;
 
             var self = this
@@ -208,7 +208,7 @@ define([
          */
         ,intersection: function(street1, street2) {
             // Alpha redirect
-            window.location.replace('https://alpha.phila.gov/property/?s1=' + street1 + '&s2=' + street2);
+            window.location.replace('https://alpha.phila.gov/property/?s1=' + (street1 || '') + '&s2=' + (street2 || ''));
             return;
 
             var self = this
